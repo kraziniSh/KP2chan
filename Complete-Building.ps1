@@ -16,19 +16,12 @@ KP2chan; 2CATO empowered.
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 .Synopsis
-Compiles the KP2chan project. This script must not be manually called. Use
-.\BuildPLGX.ps1 instead.
+Calls the compiler for KP2chan (KeePass basically).
+This script must not be manually called. Use .\BuildPLGX.ps1 instead.
 
 .Description
-Compiles the KP2chan project. This script must not be manually called. Use
-.\BuildPLGX.ps1 instead.
-
-.Inputs
-None.
-
-.Outputs
-int: 0 if succedded.
-Non-0 in other cases.
+Calls KeePass for building the KP2chan PLGX.
+This script must not be manually called. Use .\BuildPLGX.ps1 instead.
 
 .Example
 (Automatically called by .\BuildPLGX.ps1)

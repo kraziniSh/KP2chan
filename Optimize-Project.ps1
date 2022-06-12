@@ -16,34 +16,25 @@ KP2chan; 2CATO empowered.
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 .Synopsis
-Cleans up the KP2chan project.
+Cleans up the KP2chan project, for preparing the building.
+Automatically called by .\BuildPLGX.ps1.
 
 .Description
 Cleans up the project manually, without going through MSBuild/devenv.
 Automatically called by .\BuildPLGX.ps1.
 
-.Inputs
-None.
-
-.Outputs
-int: 0 if succedded.
-Non-0 in other cases.
+.Example
+(Automatic call by .\BuildPlgx.ps1)
 
 .Example
-(Automatically called by .\BuildPlgx.ps1)
-
-.Example
-.\CleanUpSrcDir.ps1 Optimize-project
-
-.Example
-.\CleanUpSrcDir.ps1 Optimize-projectTest
-# Does not actually optimize, but shows what would happen if it did.
+.\Optimize-Project.ps1 Optimize-Project
 #>
 $projectPath = Resolve-Path .\src\KP2chan
 
 function Optimize-Project {
     Write-Output 'Optimizing...'
 
+    # Prevents complaints for directories not existing; we don't care 'bout that
     $ErrorActionPreference = 'SilentlyContinue'
 
     Remove-Item $projectPath -Include *.suo -Recurse 

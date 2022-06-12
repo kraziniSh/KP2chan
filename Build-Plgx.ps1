@@ -22,18 +22,16 @@ Builds KP2chan to PLGX format. Deletes output directories before building.
 All scripts are self-signed.
 Builds KP2chan to PLGX format using locally downloaded KeePass NuGet
 package. Will require confirmation to delete output directories unless
--IgnoreWarning $true is specified.
+-SkipWarnings 'Y' is specified.
+This script does not actually call the compiler (KeePass) by itself, it wraps
+the entire process, if you will.
 
 .Parameter SkipWarnings
 Specifies if warnings should be ignored, such as before optimizing the project
 (destructive action). Y/N
 
-.Inputs
-None.
-
 .Outputs
 An integer:
-0 if succedded.
 2 if user cancelled building.
 3 if the KeePass NuGet package could not be retrieved.
 4 if the generated PLGX file could not be found.
@@ -46,8 +44,8 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 #>
 param ($skipWarnings)
 
-. ".\Complete-building.ps1"
-. ".\Optimize-project.ps1"
+. ".\Complete-Building.ps1"
+. ".\Optimize-Project.ps1"
 
 $keepassExists = Test-Path .\packages\KeePass*\lib\net*\KeePass.exe
 

@@ -15,10 +15,21 @@ KP2chan; 2CATO empowered.
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+    .Synopsis
+    Copies the plugin to the NuGet KeePass for debugging with it.
+    Called automatically by Visual Studio after successful building if set up.
+
+    .Description
+    Copies newly generated PLGXs to the NuGet KeePass Plugins directory.
+    Makes it possible to debug it using local KeePass.
+
 #>
+$keepassPath = Resolve-Path .\packages\KeePass*\lib\net*
 
-$pluginsPath = Resolve-Path .\packages\KeePass*\lib\net*\Plugins
+if (!(Test-Path $keepassPath\Plugins)) {
+    New-Item $keepassPath -Name Plugins -ItemType Directory
+}
 
-Copy-Item -Path '.\src\KP2chan\bin\KP2chan.plgx' -Destination $pluginsPath -Force
+Copy-Item -Path '.\src\KP2chan\bin\KP2chan.plgx' -Destination $keepassPath\Plugins -Force
 
-Write-Output 'KP2chan successfully copied to Plugins; NuGet KeePass is now able to load it.'
+Write-Output 'KP2chan copied to Plugins; now loadable by NuGet KeePass'
