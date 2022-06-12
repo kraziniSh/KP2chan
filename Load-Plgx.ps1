@@ -27,7 +27,7 @@ KP2chan; 2CATO empowered.
 $keepassPath = Resolve-Path .\packages\KeePass*\lib\net*
 
 if (!(Test-Path $keepassPath\Plugins)) {
-    New-Item $keepassPath -Name Plugins -ItemType Directory
+    New-Item $keepassPath -Name Plugins -ItemType Directory > $null
 }
 
 Copy-Item -Path '.\src\KP2chan\bin\KP2chan.plgx' -Destination $keepassPath\Plugins -Force
