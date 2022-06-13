@@ -76,11 +76,14 @@ namespace KP2chan {
         /// </param>
         public override ToolStripMenuItem GetMenuItem(PluginMenuType pluginMenuType) {
             switch (pluginMenuType) {
-                case PluginMenuType.Entry: return pluginEntryMenu;
-                case PluginMenuType.Group: return pluginGroupMenu;
-                case PluginMenuType.Main: return pluginMainMenu;
-                case PluginMenuType.Tray:
-                default: return null;
+                case PluginMenuType.Entry:
+                    return pluginEntryMenu;
+                case PluginMenuType.Group:
+                    return pluginGroupMenu;
+                case PluginMenuType.Main:
+                    return pluginMainMenu;
+                default:
+                    return null;
             }
         }
 

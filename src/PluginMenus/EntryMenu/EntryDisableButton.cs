@@ -27,7 +27,7 @@ namespace KP2chan {
         private static ToolStripMenuItem disableButton;
         internal static ToolStripMenuItem Create() {
             disableButton = new ToolStripMenuItem(
-                text: Resources.KP2chan.entryDisableButton,
+                text: Properties.Strings.entryDisableButton,
                 image: null,
                 onClick: EntryDisableButton_Click
                 );
@@ -45,11 +45,11 @@ namespace KP2chan {
             if (selectedEntriesCount == 1) {
                 var entryTitle = selectedEntries[0].Strings.ReadSafeEx(PwDefs.TitleField);
                 pluginHost.MainWindow.SetStatusEx(
-                    string.Format(Resources.KP2chan.entryDisabledForSingle, entryTitle)
+                    string.Format(Properties.Strings.entryDisabledForSingle, entryTitle)
                     );
             } else {
                 pluginHost.MainWindow.SetStatusEx(
-                    string.Format(Resources.KP2chan.entryDisabledForMultiple, selectedEntriesCount)
+                    string.Format(Properties.Strings.entryDisabledForMultiple, selectedEntriesCount)
                     );
             }
         }

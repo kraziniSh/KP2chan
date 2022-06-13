@@ -17,42 +17,41 @@ KP2chan; 2CATO empowered.
 
 */
 
+using KeePassLib.Collections;
 using System;
 using System.Windows.Forms;
-using KeePassLib.Collections;
 
 namespace KP2chan {
-    internal static class GroupDisableButton {
+    internal static class MainDisableButton {
         private static ToolStripMenuItem disableButton;
 
         internal static ToolStripMenuItem Create() {
             disableButton = new ToolStripMenuItem(
-                text: Resources.KP2chan.groupDisableButton,
+                text: Properties.Strings.mainDisableButton,
                 image: null,
-                onClick: GroupDisableButton_Click
+                onClick: MainDisableButton_Click
                 );
+
+            disableButton.DropDownOpening += MainDisableButton_DropDownOpening;
 
             return disableButton;
         }
 
-        private static void GroupDisableButton_Click(object sender, EventArgs e) {
+        private static void MainDisableButton_DropDownOpening(object sender, EventArgs e) {
+            disableButton.Enabled = KP2chanExt.pluginHost.Database.IsOpen;
+        }
+
+        private static void MainDisableButton_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            var selectedGroup = pluginHost.MainWindow.GetSelectedGroup();
+            pluginHost.Database.RootGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
 
-            selectedGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
-
-            if (selectedGroup == pluginHost.Database.RootGroup) {
-                pluginHost.MainWindow.SetStatusEx(Resources.KP2chan.mainDisabled);
-            } else {
-                pluginHost.MainWindow.SetStatusEx(
-                string.Format(Resources.KP2chan.groupDisabled, selectedGroup.Name)
-                );
-            }
+            pluginHost.MainWindow.SetStatusEx(Properties.Strings.mainDisabled);
         }
 
         internal static void Terminate() {
-            disableButton.Click -= GroupDisableButton_Click;
+            disableButton.Click -= MainDisableButton_Click;
+            disableButton.DropDownOpening -= MainDisableButton_DropDownOpening;
             disableButton.Dispose();
         }
     }

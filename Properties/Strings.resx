@@ -120,6 +120,9 @@
   <data name="entryDisableButton" xml:space="preserve">
     <value>Disable 2CATO</value>
   </data>
+  <data name="entryDisabled" xml:space="preserve">
+    <value>[KP2chan] 2CATO disabled for entry "{0}".</value>
+  </data>
   <data name="entryDisabledForMultiple" xml:space="preserve">
     <value>[KP2chan] 2CATO disabled for {0} entries.</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="entryEnableButton" xml:space="preserve">
     <value>Enable 2CATO</value>
+  </data>
+  <data name="entryEnabled" xml:space="preserve">
+    <value>[KP2chan] 2CATO enabled for entry "{0}".</value>
   </data>
   <data name="entryEnabledForMultiple" xml:space="preserve">
     <value>[KP2chan] 2CATO enabled for {0} entries.</value>
@@ -161,11 +167,5 @@
   </data>
   <data name="pluginName" xml:space="preserve">
     <value>KP2chan</value>
-  </data>
-  <data name="entryDisabled" xml:space="preserve">
-    <value>[KP2chan] 2CATO disabled for entry "{0}".</value>
-  </data>
-  <data name="entryEnabled" xml:space="preserve">
-    <value>[KP2chan] 2CATO enabled for entry "{0}".</value>
   </data>
 </root>

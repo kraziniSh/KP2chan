@@ -20,24 +20,24 @@ KP2chan; 2CATO empowered.
 using System.Windows.Forms;
 
 namespace KP2chan {
-    internal static class MainMenuItem {
+    internal static class EntryMenuItem {
         internal static ToolStripMenuItem Create() {
-            var mainMenuItem = new ToolStripMenuItem(
-                text: Resources.KP2chan.pluginName
+            var entryMenuItem = new ToolStripMenuItem(
+                text: Properties.Strings.pluginName
                 // TODO image:
                 );
-            var enableAllButton = MainEnableButton.Create();
-            var disableAllButton = MainDisableButton.Create();
+            var enableButton = EntryEnableButton.Create();
+            var disableButton = EntryDisableButton.Create();
 
-            mainMenuItem.DropDownItems.Add(enableAllButton);
-            mainMenuItem.DropDownItems.Add(disableAllButton);
+            entryMenuItem.DropDownItems.Add(enableButton);
+            entryMenuItem.DropDownItems.Add(disableButton);
 
-            return mainMenuItem;
+            return entryMenuItem;
         }
 
         internal static void Terminate() {
-            MainEnableButton.Terminate();
-            MainDisableButton.Terminate();
+            EntryEnableButton.Terminate();
+            EntryDisableButton.Terminate();
         }
     }
 }

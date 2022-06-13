@@ -17,42 +17,43 @@ KP2chan; 2CATO empowered.
 
 */
 
-using KeePassLib.Collections;
 using System;
 using System.Windows.Forms;
+using KeePassLib.Collections;
 
 namespace KP2chan {
-    internal static class MainEnableButton {
-        private static ToolStripMenuItem enableButton;
+    internal static class GroupDisableButton {
+        private static ToolStripMenuItem disableButton;
 
         internal static ToolStripMenuItem Create() {
-            enableButton = new ToolStripMenuItem(
-                text: Resources.KP2chan.mainEnableButton,
+            disableButton = new ToolStripMenuItem(
+                text: Properties.Strings.groupDisableButton,
                 image: null,
-                onClick: MainEnableButton_Click
+                onClick: GroupDisableButton_Click
                 );
 
-            enableButton.DropDownOpening += MainEnableButton_DropDownOpening;
-
-            return enableButton;
+            return disableButton;
         }
 
-        private static void MainEnableButton_Click(object sender, EventArgs e) {
+        private static void GroupDisableButton_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.Database.RootGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
+            var selectedGroup = pluginHost.MainWindow.GetSelectedGroup();
 
-            pluginHost.MainWindow.SetStatusEx(Resources.KP2chan.mainEnabled);
-        }
+            selectedGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
 
-        private static void MainEnableButton_DropDownOpening(object sender, EventArgs e) {
-            enableButton.Enabled = KP2chanExt.pluginHost.Database.IsOpen;
+            if (selectedGroup == pluginHost.Database.RootGroup) {
+                pluginHost.MainWindow.SetStatusEx(Properties.Strings.mainDisabled);
+            } else {
+                pluginHost.MainWindow.SetStatusEx(
+                string.Format(Properties.Strings.groupDisabled, selectedGroup.Name)
+                );
+            }
         }
 
         internal static void Terminate() {
-            enableButton.Click -= MainEnableButton_Click;
-            enableButton.DropDownOpening -= MainEnableButton_DropDownOpening;
-            enableButton.Dispose();
+            disableButton.Click -= GroupDisableButton_Click;
+            disableButton.Dispose();
         }
     }
 }

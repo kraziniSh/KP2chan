@@ -27,7 +27,7 @@ namespace KP2chan {
 
         internal static ToolStripMenuItem Create() {
             enableButton= new ToolStripMenuItem(
-                text: Resources.KP2chan.groupEnableButton,
+                text: Properties.Strings.groupEnableButton,
                 image: null,
                 onClick: GroupEnableButton_Click
                 );
@@ -43,10 +43,10 @@ namespace KP2chan {
             selectedGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
 
             if (selectedGroup == pluginHost.Database.RootGroup) {
-                pluginHost.MainWindow.SetStatusEx(Resources.KP2chan.mainEnabled);
+                pluginHost.MainWindow.SetStatusEx(Properties.Strings.mainEnabled);
             } else {
                 pluginHost.MainWindow.SetStatusEx(
-                string.Format(Resources.KP2chan.groupEnabled, selectedGroup.Name)
+                string.Format(Properties.Strings.groupEnabled, selectedGroup.Name)
                 );
             }
         }

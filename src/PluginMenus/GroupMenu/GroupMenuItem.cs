@@ -23,7 +23,7 @@ namespace KP2chan {
     internal static class GroupMenuItem {
         internal static ToolStripMenuItem Create() {
             var groupMenuItem = new ToolStripMenuItem(
-                text: Resources.KP2chan.pluginName
+                text: Properties.Strings.pluginName
                 // TODO image:
                 );
             var enableButton = GroupEnableButton.Create();

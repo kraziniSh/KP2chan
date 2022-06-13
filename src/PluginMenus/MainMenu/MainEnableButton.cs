@@ -22,37 +22,37 @@ using System;
 using System.Windows.Forms;
 
 namespace KP2chan {
-    internal static class MainDisableButton {
-        private static ToolStripMenuItem disableButton;
+    internal static class MainEnableButton {
+        private static ToolStripMenuItem enableButton;
 
         internal static ToolStripMenuItem Create() {
-            disableButton = new ToolStripMenuItem(
-                text: Resources.KP2chan.mainDisableButton,
+            enableButton = new ToolStripMenuItem(
+                text: Properties.Strings.mainEnableButton,
                 image: null,
-                onClick: MainDisableButton_Click
+                onClick: MainEnableButton_Click
                 );
 
-            disableButton.DropDownOpening += MainDisableButton_DropDownOpening;
+            enableButton.DropDownOpening += MainEnableButton_DropDownOpening;
 
-            return disableButton;
+            return enableButton;
         }
 
-        private static void MainDisableButton_DropDownOpening(object sender, EventArgs e) {
-            disableButton.Enabled = KP2chanExt.pluginHost.Database.IsOpen;
-        }
-
-        private static void MainDisableButton_Click(object sender, EventArgs e) {
+        private static void MainEnableButton_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.Database.RootGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
+            pluginHost.Database.RootGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
 
-            pluginHost.MainWindow.SetStatusEx(Resources.KP2chan.mainDisabled);
+            pluginHost.MainWindow.SetStatusEx(Properties.Strings.mainEnabled);
+        }
+
+        private static void MainEnableButton_DropDownOpening(object sender, EventArgs e) {
+            enableButton.Enabled = KP2chanExt.pluginHost.Database.IsOpen;
         }
 
         internal static void Terminate() {
-            disableButton.Click -= MainDisableButton_Click;
-            disableButton.DropDownOpening -= MainDisableButton_DropDownOpening;
-            disableButton.Dispose();
+            enableButton.Click -= MainEnableButton_Click;
+            enableButton.DropDownOpening -= MainEnableButton_DropDownOpening;
+            enableButton.Dispose();
         }
     }
 }
