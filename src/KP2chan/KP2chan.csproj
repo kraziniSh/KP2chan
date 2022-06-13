@@ -60,21 +60,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\KeePass\Entries.cs" />
+    <Compile Include="src\KeePass\PwEntryArrayExtension.cs" />
+    <Compile Include="src\KeePass\PwEntryExtension.cs" />
+    <Compile Include="src\KeePass\PwGroupExtension.cs" />
     <Compile Include="src\KP2chanExt.cs" />
+    <Compile Include="src\PluginMenus\EntryMenu\EntryDisableButton.cs" />
+    <Compile Include="src\PluginMenus\EntryMenu\EntryEnableButton.cs" />
     <Compile Include="src\PluginMenus\EntryMenu\EntryMenuItem.cs" />
+    <Compile Include="src\PluginMenus\GroupMenu\GroupDisableButton.cs" />
+    <Compile Include="src\PluginMenus\GroupMenu\GroupEnableButton.cs" />
     <Compile Include="src\PluginMenus\GroupMenu\GroupMenuItem.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\DisableAllButton.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\EnableAllButton.cs" />
+    <Compile Include="src\PluginMenus\MainMenu\MainDisableButton.cs" />
+    <Compile Include="src\PluginMenus\MainMenu\MainEnableButton.cs" />
     <Compile Include="src\PluginMenus\MainMenu\MainMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\KP2chan.fr.Designer.cs">
       <DependentUpon>KP2chan.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\KP2chan.en.Designer.cs">
-      <DependentUpon>KP2chan.en.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -93,10 +94,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>KP2chan.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\KP2chan.en.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>KP2chan.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\KP2chan.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>KP2chan.Designer.cs</LastGenOutput>
@@ -109,9 +106,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>cd $(SolutionDir)
-powershell -File Build-Plgx.ps1 -skipWarnings Y
-powershell -File Load-Plgx.ps1
+    <PostBuildEvent>@rem cd $(SolutionDir)
+@rem powershell -File Build-Plugin.ps1 -configuration 'Debug' -skipWarnings Y
+@rem powershell -File Move-Plugin.ps1
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -17,19 +17,27 @@ KP2chan; 2CATO empowered.
 
 */
 
-using KeePass.Plugins;
-using KeePassLib;
-
-using System;
 using System.Windows.Forms;
 
 namespace KP2chan {
-    [System.ComponentModel.DesignerCategory(null)]
-    internal sealed class EntryMenuItem : ToolStripMenuItem {
-        public EntryMenuItem() {
+    internal static class EntryMenuItem {
+        internal static ToolStripMenuItem Create() {
+            var entryMenuItem = new ToolStripMenuItem(
+                text: Resources.KP2chan.pluginName
+                // TODO image:
+                );
+            var enableButton = EntryEnableButton.Create();
+            var disableButton = EntryDisableButton.Create();
+
+            entryMenuItem.DropDownItems.Add(enableButton);
+            entryMenuItem.DropDownItems.Add(disableButton);
+
+            return entryMenuItem;
         }
 
-        internal void Delete() {
+        internal static void Terminate() {
+            EntryEnableButton.Terminate();
+            EntryDisableButton.Terminate();
         }
     }
 }

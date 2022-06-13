@@ -23,13 +23,24 @@ KP2chan; 2CATO empowered.
     Copies newly generated PLGXs to the NuGet KeePass Plugins directory.
     Makes it possible to debug it using local KeePass.
 
+    .Parameter Type
+    Whether it is PLGX or DLL to move. Defaults to plgx.
+    'both'/'dll'/'plgx'
+
+    .Parameter Configuration
+    Specifies the configuration. Only serves for copying the respective directories.
+    'Debug'/'Release'. Defaults to 'Debug'.
 #>
+param ($type, $configuration)
 $keepassPath = Resolve-Path .\packages\KeePass*\lib\net*
+
+if (!$type) { $type = 'plgx' }
+if (!$configuration) { $configuration = 'Debug' }
 
 if (!(Test-Path $keepassPath\Plugins)) {
     New-Item $keepassPath -Name Plugins -ItemType Directory > $null
 }
 
-Copy-Item -Path '.\src\KP2chan\bin\KP2chan.plgx' -Destination $keepassPath\Plugins -Force
+Copy-Item -Path ".\src\KP2chan\bin\$configuration\KP2chan.$type" -Destination $keepassPath\Plugins -Force
 
 Write-Output 'KP2chan copied to Plugins; now loadable by NuGet KeePass'

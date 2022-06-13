@@ -61,56 +61,155 @@ namespace KP2chan.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable 2CATO.
+        /// </summary>
+        internal static string entryDisableButton {
+            get {
+                return ResourceManager.GetString("entryDisableButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [KP2chan] 2CATO disabled for entry &quot;{0}&quot;..
+        /// </summary>
+        internal static string entryDisabled {
+            get {
+                return ResourceManager.GetString("entryDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [KP2chan] 2CATO disabled for {0} entries..
+        /// </summary>
+        internal static string entryDisabledForMultiple {
+            get {
+                return ResourceManager.GetString("entryDisabledForMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [KP2chan] 2CATO disabled for entry &quot;{0}&quot;..
+        /// </summary>
+        internal static string entryDisabledForSingle {
+            get {
+                return ResourceManager.GetString("entryDisabledForSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable 2CATO.
+        /// </summary>
+        internal static string entryEnableButton {
+            get {
+                return ResourceManager.GetString("entryEnableButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [KP2chan] 2CATO enabled for entry &quot;{0}&quot;..
+        /// </summary>
+        internal static string entryEnabled {
+            get {
+                return ResourceManager.GetString("entryEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [KP2chan] 2CATO enabled for {0} entries..
+        /// </summary>
+        internal static string entryEnabledForMultiple {
+            get {
+                return ResourceManager.GetString("entryEnabledForMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [KP2chan] 2CATO enabled for entry &quot;{0}&quot;..
+        /// </summary>
+        internal static string entryEnabledForSingle {
+            get {
+                return ResourceManager.GetString("entryEnabledForSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable 2CATO.
+        /// </summary>
+        internal static string groupDisableButton {
+            get {
+                return ResourceManager.GetString("groupDisableButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [KP2chan] 2CATO disabled for group &quot;{0}&quot;..
+        /// </summary>
+        internal static string groupDisabled {
+            get {
+                return ResourceManager.GetString("groupDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable 2CATO.
+        /// </summary>
+        internal static string groupEnableButton {
+            get {
+                return ResourceManager.GetString("groupEnableButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [KP2chan] 2CATO enabled for group &quot;{0}&quot;..
+        /// </summary>
+        internal static string groupEnabled {
+            get {
+                return ResourceManager.GetString("groupEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable 2CATO everywhere.
         /// </summary>
-        internal static string mainDisableAllButton {
+        internal static string mainDisableButton {
             get {
-                return ResourceManager.GetString("mainDisableAllButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enable 2CATO everywhere.
-        /// </summary>
-        internal static string mainEnableAllButton {
-            get {
-                return ResourceManager.GetString("mainEnableAllButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [KP2chan] Please open a database first!.
-        /// </summary>
-        internal static string noDatabaseOpened {
-            get {
-                return ResourceManager.GetString("noDatabaseOpened", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to kp2chan.
-        /// </summary>
-        internal static string pluginName {
-            get {
-                return ResourceManager.GetString("pluginName", resourceCulture);
+                return ResourceManager.GetString("mainDisableButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to [KP2chan] 2CATO disabled for all entries..
         /// </summary>
-        internal static string tcatoDisabledAll {
+        internal static string mainDisabled {
             get {
-                return ResourceManager.GetString("tcatoDisabledAll", resourceCulture);
+                return ResourceManager.GetString("mainDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable 2CATO everywhere.
+        /// </summary>
+        internal static string mainEnableButton {
+            get {
+                return ResourceManager.GetString("mainEnableButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to [KP2chan] 2CATO enabled for all entries..
         /// </summary>
-        internal static string tcatoEnabledAll {
+        internal static string mainEnabled {
             get {
-                return ResourceManager.GetString("tcatoEnabledAll", resourceCulture);
+                return ResourceManager.GetString("mainEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KP2chan.
+        /// </summary>
+        internal static string pluginName {
+            get {
+                return ResourceManager.GetString("pluginName", resourceCulture);
             }
         }
     }

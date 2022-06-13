@@ -1,1 +1,11 @@
-{}
+{
+  "profiles": {
+    "KP2chanTests": {
+      "commandName": "Project"
+    },
+    "KP2chan": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\lacro\\source\\.NET\\KP2chan\\packages\\KeePass.2.51.1.21987\\lib\\net462\\KeePass.exe"
+    }
+  }
+}

@@ -17,15 +17,21 @@ KP2chan; 2CATO empowered.
 
 .Synopsis
 Calls the compiler for KP2chan (KeePass basically).
-This script must not be manually called. Use .\BuildPLGX.ps1 instead.
+This script must not be manually called. Use .\Build-Plugin.ps1 instead.
 
 .Description
 Calls KeePass for building the KP2chan PLGX.
-This script must not be manually called. Use .\BuildPLGX.ps1 instead.
+This script must not be manually called. Use .\Build-Plugin.ps1 instead.
+
+.Parameter Configuration
+Specifies the configuration. Only serves for copying the respective directories.
+'Debug'/'Release'. Automatically specified by .\Build-Plugin.ps1.
 
 .Example
-(Automatically called by .\BuildPLGX.ps1)
+(Automatically called by .\Build-Plugin.ps1)
 #>
+param ($configuratiom)
+
 $keepass = Get-ChildItem .\packages\KeePass*\lib\net*\KeePass.exe
 $projectPath = Resolve-Path .\src\KP2chan
 
@@ -52,6 +58,11 @@ function Complete-Building {
     Write-Output 'Moving PLGX file...'
 
     Move-Item .\src\KP2chan.plgx $projectPath\bin
+
+    Write-Output 'Restoring files...'
+
+    Move-Item .\temp $projectPath\bin\$configuration
+    Remove-Item .\temp -Recurse
 
     Write-Output 'KP2chan PLGX successfully generated. Navigate to .\src\KP2chan\bin to find it.'
 }

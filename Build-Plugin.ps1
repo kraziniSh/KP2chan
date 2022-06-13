@@ -16,7 +16,8 @@ KP2chan; 2CATO empowered.
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 .Synopsis
-Builds KP2chan to PLGX format. Deletes output directories before building.
+Builds KP2chan to PLGX format. Deletes then restores output directories before
+building.
 
 .Description
 All scripts are self-signed.
@@ -26,9 +27,13 @@ package. Will require confirmation to delete output directories unless
 This script does not actually call the compiler (KeePass) by itself, it wraps
 the entire process, if you will.
 
+.Parameter Configuration
+Specifies the configuration. Only serves for copying the respective directories.
+'Debug'/'Release'. Defaults to 'Debug'.
+
 .Parameter SkipWarnings
 Specifies if warnings should be ignored, such as before optimizing the project
-(destructive action). Y/N
+(destructive action). 'Y'/'N'
 
 .Outputs
 An integer:
@@ -40,9 +45,9 @@ Non-0 in other cases.
 .Example
 # 
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-.\Build-PLGX.ps1
+.\Build-Plugin.ps1
 #>
-param ($skipWarnings)
+param ($configuration, $skipWarnings)
 
 . ".\Complete-Building.ps1"
 . ".\Optimize-Project.ps1"
@@ -52,6 +57,10 @@ $keepassExists = Test-Path .\packages\KeePass*\lib\net*\KeePass.exe
 
 Write-Output 'KP2chan Build Script - (c) 2022 1A3CROIXX'
 
+if (!$configuration) { $configuration = 'Debug' }
+
+Write-Output "Configuration: $configuration"
+
 if (!$keepassExists) {
     Write-Error "FATAL: KeePass NuGet package could not be found! Make sure that it's installed."
     exit 3
@@ -59,11 +68,11 @@ if (!$keepassExists) {
 
 if ($skipWarnings -ne 'Y') {
     $confirmOptimization = Read-Host @"
-    WARNING: project will be optimized and output binaries/objects/plgx will be deleted! Are you sure you
-    want to continue? (Y/N)
+    WARNING: project output directory files will be deleted then restored; it can go wrong. Are you
+    sure you want to continue? (Y/N)
 "@.Trim()
     if ($confirmOptimization -eq 'Y') {
-        Optimize-Project
+        Optimize-Project -configuration $configuration
         Complete-Building
     } else {
         Write-Output 'PLGX building aborted: optimization cancelled.'
@@ -72,6 +81,6 @@ if ($skipWarnings -ne 'Y') {
 } else {
     Write-Output 'Warnings skipped.'
 
-    Optimize-Project
+    Optimize-Project -configuration $configuration
     Complete-Building
 }

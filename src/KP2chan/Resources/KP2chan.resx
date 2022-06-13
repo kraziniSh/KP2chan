@@ -117,22 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="mainDisableAllButton" xml:space="preserve">
+  <data name="entryDisableButton" xml:space="preserve">
+    <value>Disable 2CATO</value>
+  </data>
+  <data name="entryDisabledForMultiple" xml:space="preserve">
+    <value>[KP2chan] 2CATO disabled for {0} entries.</value>
+  </data>
+  <data name="entryDisabledForSingle" xml:space="preserve">
+    <value>[KP2chan] 2CATO disabled for entry "{0}".</value>
+  </data>
+  <data name="entryEnableButton" xml:space="preserve">
+    <value>Enable 2CATO</value>
+  </data>
+  <data name="entryEnabledForMultiple" xml:space="preserve">
+    <value>[KP2chan] 2CATO enabled for {0} entries.</value>
+  </data>
+  <data name="entryEnabledForSingle" xml:space="preserve">
+    <value>[KP2chan] 2CATO enabled for entry "{0}".</value>
+  </data>
+  <data name="groupDisableButton" xml:space="preserve">
+    <value>Disable 2CATO</value>
+  </data>
+  <data name="groupDisabled" xml:space="preserve">
+    <value>[KP2chan] 2CATO disabled for group "{0}".</value>
+  </data>
+  <data name="groupEnableButton" xml:space="preserve">
+    <value>Enable 2CATO</value>
+  </data>
+  <data name="groupEnabled" xml:space="preserve">
+    <value>[KP2chan] 2CATO enabled for group "{0}".</value>
+  </data>
+  <data name="mainDisableButton" xml:space="preserve">
     <value>Disable 2CATO everywhere</value>
   </data>
-  <data name="mainEnableAllButton" xml:space="preserve">
-    <value>Enable 2CATO everywhere</value>
-  </data>
-  <data name="noDatabaseOpened" xml:space="preserve">
-    <value>[KP2chan] Please open a database first!</value>
-  </data>
-  <data name="pluginName" xml:space="preserve">
-    <value>kp2chan</value>
-  </data>
-  <data name="tcatoDisabledAll" xml:space="preserve">
+  <data name="mainDisabled" xml:space="preserve">
     <value>[KP2chan] 2CATO disabled for all entries.</value>
   </data>
-  <data name="tcatoEnabledAll" xml:space="preserve">
+  <data name="mainEnableButton" xml:space="preserve">
+    <value>Enable 2CATO everywhere</value>
+  </data>
+  <data name="mainEnabled" xml:space="preserve">
     <value>[KP2chan] 2CATO enabled for all entries.</value>
+  </data>
+  <data name="pluginName" xml:space="preserve">
+    <value>KP2chan</value>
+  </data>
+  <data name="entryDisabled" xml:space="preserve">
+    <value>[KP2chan] 2CATO disabled for entry "{0}".</value>
+  </data>
+  <data name="entryEnabled" xml:space="preserve">
+    <value>[KP2chan] 2CATO enabled for entry "{0}".</value>
   </data>
 </root>

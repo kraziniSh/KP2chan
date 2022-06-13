@@ -17,29 +17,37 @@ KP2chan; 2CATO empowered.
 
 .Synopsis
 Cleans up the KP2chan project, for preparing the building.
-Automatically called by .\BuildPLGX.ps1.
+Automatically called by .\Build-Plugin.ps1.
 
 .Description
 Cleans up the project manually, without going through MSBuild/devenv.
-Automatically called by .\BuildPLGX.ps1.
+Automatically called by .\Build-Plugin.ps1.
+
+.Parameter Configuration
+Specifies the configuration. Only serves for copying the respective directories.
+'Debug'/'Release'. Automatically specified by .\Build-Plugin.ps1.
 
 .Example
-(Automatic call by .\BuildPlgx.ps1)
+(Automatic call by .\Build-Plugin.ps1)
 
 .Example
 .\Optimize-Project.ps1 Optimize-Project
 #>
+param ($configuration)
 $projectPath = Resolve-Path .\src\KP2chan
 
 function Optimize-Project {
     Write-Output 'Optimizing...'
+
+    New-Item .\ -Name temp -ItemType Directory > $null
+    Copy-Item $projectPath\bin\$configuration -Include *.* \projectpath
 
     # Prevents complaints for directories not existing; we don't care 'bout that
     $ErrorActionPreference = 'SilentlyContinue'
 
     Remove-Item $projectPath -Include *.suo -Recurse 
     Remove-Item $projectPath -Include *.user -Recurse
-    Remove-Item $projectPath\bin -Recurse
+    Remove-Item $projectPath\bin -Exclude -Recurse
     Remove-Item $projectPath\obj -Recurse
 
     $ErrorActionPreference = 'Continue'

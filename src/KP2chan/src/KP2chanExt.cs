@@ -18,21 +18,21 @@ KP2chan; 2CATO empowered.
 */
 
 using KeePass.Plugins;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace KP2chan {
     public sealed class KP2chanExt : Plugin {
         internal static IPluginHost pluginHost;
 
-        private readonly ToolStripItemCollection toolsMenu = pluginHost.MainWindow.ToolsMenu.DropDownItems;
+        private ToolStripItemCollection toolsMenu;
+
         private ToolStripSeparator separator;
-        private MainMenuItem pluginMainMenu;
-        private GroupMenuItem pluginGroupMenu;
-        private EntryMenuItem pluginEntryMenu;
+        private ToolStripMenuItem pluginEntryMenu;
+        private ToolStripMenuItem pluginGroupMenu;
+        private ToolStripMenuItem pluginMainMenu;
 
         public override string UpdateUrl =>
-            "https://github.com/l9cro1xx/kp2chan/update.txt";
+            "https://l9cro1xx.github.io/keepass/update";
 
         // TODO SmallIcon
 
@@ -55,10 +55,12 @@ namespace KP2chan {
             if (initializingHost != null) pluginHost = initializingHost;
             else return false;
 
+            toolsMenu = pluginHost.MainWindow.ToolsMenu.DropDownItems;
+
             separator = new ToolStripSeparator();
-            pluginMainMenu = new MainMenuItem();
-            pluginGroupMenu = new GroupMenuItem();
-            pluginEntryMenu = new EntryMenuItem();
+            pluginEntryMenu = EntryMenuItem.Create();
+            pluginGroupMenu = GroupMenuItem.Create();
+            pluginMainMenu = MainMenuItem.Create();
 
             toolsMenu.Add(separator);
 
@@ -74,15 +76,11 @@ namespace KP2chan {
         /// </param>
         public override ToolStripMenuItem GetMenuItem(PluginMenuType pluginMenuType) {
             switch (pluginMenuType) {
-                case PluginMenuType.Main:
-                    return pluginMainMenu;
-                case PluginMenuType.Group:
-                    return pluginGroupMenu;
-                case PluginMenuType.Entry:
-                    return pluginEntryMenu;
+                case PluginMenuType.Entry: return pluginEntryMenu;
+                case PluginMenuType.Group: return pluginGroupMenu;
+                case PluginMenuType.Main: return pluginMainMenu;
                 case PluginMenuType.Tray:
-                default:
-                    return null;
+                default: return null;
             }
         }
 
@@ -92,9 +90,13 @@ namespace KP2chan {
         /// remove event handlers, etc.
         /// </summary>
         public override void Terminate() {
-            pluginMainMenu.Delete();
-            pluginGroupMenu.Delete();
-            pluginEntryMenu.Delete();
+            EntryMenuItem.Terminate();
+            GroupMenuItem.Terminate();
+            MainMenuItem.Terminate();
+
+            pluginEntryMenu = null;
+            pluginGroupMenu = null;
+            pluginMainMenu = null;
 
             separator.Dispose();
 
