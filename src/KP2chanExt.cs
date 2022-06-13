@@ -31,8 +31,11 @@ namespace KP2chan {
         private ToolStripMenuItem pluginGroupMenu;
         private ToolStripMenuItem pluginMainMenu;
 
-        public override string UpdateUrl =>
-            "https://l9cro1xx.github.io/keepass/update";
+        public override string UpdateUrl {
+            get {
+                return "https://l9cro1xx.github.io/keepass/update";
+            }
+        }
 
         // TODO SmallIcon
 

@@ -17,42 +17,43 @@ KP2chan; 2CATO empowered.
 
 */
 
-using KeePassLib.Collections;
 using System;
 using System.Windows.Forms;
+using KeePassLib.Collections;
 
 namespace KP2chan {
-    internal static class MainEnableButton {
-        private static ToolStripMenuItem enableButton;
+    internal static class GroupDisableTcatoButton {
+        private static ToolStripMenuItem button;
 
         internal static ToolStripMenuItem Create() {
-            enableButton = new ToolStripMenuItem(
-                text: Properties.Strings.mainEnableButton,
+            button = new ToolStripMenuItem(
+                text: Properties.Strings.groupTcatoDisable,
                 image: null,
-                onClick: MainEnableButton_Click
+                onClick: Button_Click
                 );
 
-            enableButton.DropDownOpening += MainEnableButton_DropDownOpening;
-
-            return enableButton;
+            return button;
         }
 
-        private static void MainEnableButton_Click(object sender, EventArgs e) {
+        private static void Button_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.Database.RootGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
+            var selectedGroup = pluginHost.MainWindow.GetSelectedGroup();
 
-            pluginHost.MainWindow.SetStatusEx(Properties.Strings.mainEnabled);
-        }
+            selectedGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
 
-        private static void MainEnableButton_DropDownOpening(object sender, EventArgs e) {
-            enableButton.Enabled = KP2chanExt.pluginHost.Database.IsOpen;
+            if (selectedGroup == pluginHost.Database.RootGroup) {
+                pluginHost.MainWindow.SetStatusEx(Properties.Strings.allTcatoDisabled);
+            } else {
+                pluginHost.MainWindow.SetStatusEx(
+                string.Format(Properties.Strings.groupTcatoDisabled, selectedGroup.Name)
+                );
+            }
         }
 
         internal static void Terminate() {
-            enableButton.Click -= MainEnableButton_Click;
-            enableButton.DropDownOpening -= MainEnableButton_DropDownOpening;
-            enableButton.Dispose();
+            button.Click -= Button_Click;
+            button.Dispose();
         }
     }
 }

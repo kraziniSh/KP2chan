@@ -22,22 +22,26 @@ using System.Windows.Forms;
 namespace KP2chan {
     internal static class EntryMenuItem {
         internal static ToolStripMenuItem Create() {
-            var entryMenuItem = new ToolStripMenuItem(
+            var menuItem = new ToolStripMenuItem(
                 text: Properties.Strings.pluginName
                 // TODO image:
                 );
-            var enableButton = EntryEnableButton.Create();
-            var disableButton = EntryDisableButton.Create();
 
-            entryMenuItem.DropDownItems.Add(enableButton);
-            entryMenuItem.DropDownItems.Add(disableButton);
+            menuItem.DropDownItems.AddRange(new[] {
+                EntryEnableATButton.Create(),
+                EntryDisableATButton.Create(),
+                EntryEnableTcatoButton.Create(),
+                EntryDisableTcatoButton.Create(),
+            });
 
-            return entryMenuItem;
+            return menuItem;
         }
 
         internal static void Terminate() {
-            EntryEnableButton.Terminate();
-            EntryDisableButton.Terminate();
+            EntryEnableATButton.Terminate();
+            EntryDisableATButton.Terminate();
+            EntryEnableTcatoButton.Terminate();
+            EntryDisableTcatoButton.Terminate();
         }
     }
 }

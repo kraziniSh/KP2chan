@@ -19,41 +19,40 @@ KP2chan; 2CATO empowered.
 
 using System;
 using System.Windows.Forms;
-using KeePassLib.Collections;
 
 namespace KP2chan {
-    internal static class GroupDisableButton {
-        private static ToolStripMenuItem disableButton;
+    internal static class GroupDisableATButton {
+        private static ToolStripMenuItem button;
 
         internal static ToolStripMenuItem Create() {
-            disableButton = new ToolStripMenuItem(
-                text: Properties.Strings.groupDisableButton,
+            button = new ToolStripMenuItem(
+                text: Properties.Strings.groupATDisable,
                 image: null,
-                onClick: GroupDisableButton_Click
+                onClick: Button_Click
                 );
 
-            return disableButton;
+            return button;
         }
 
-        private static void GroupDisableButton_Click(object sender, EventArgs e) {
+        private static void Button_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
             var selectedGroup = pluginHost.MainWindow.GetSelectedGroup();
 
-            selectedGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
+            selectedGroup.SetAutoType(false);
 
             if (selectedGroup == pluginHost.Database.RootGroup) {
-                pluginHost.MainWindow.SetStatusEx(Properties.Strings.mainDisabled);
+                pluginHost.MainWindow.SetStatusEx(Properties.Strings.allATDisabled);
             } else {
                 pluginHost.MainWindow.SetStatusEx(
-                string.Format(Properties.Strings.groupDisabled, selectedGroup.Name)
+                string.Format(Properties.Strings.groupATDisabled, selectedGroup.Name)
                 );
             }
         }
 
         internal static void Terminate() {
-            disableButton.Click -= GroupDisableButton_Click;
-            disableButton.Dispose();
+            button.Click -= Button_Click;
+            button.Dispose();
         }
     }
 }

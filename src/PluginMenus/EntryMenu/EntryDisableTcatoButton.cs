@@ -23,40 +23,40 @@ using KeePassLib;
 using KeePassLib.Collections;
 
 namespace KP2chan {
-    internal static class EntryEnableButton {
-        private static ToolStripMenuItem enableButton;
+    internal static class EntryDisableTcatoButton {
+        private static ToolStripMenuItem button;
         internal static ToolStripMenuItem Create() {
-            enableButton = new ToolStripMenuItem(
-                text: Properties.Strings.entryEnableButton,
+            button = new ToolStripMenuItem(
+                text: Properties.Strings.entryTcatoDisable,
                 image: null,
-                onClick: EntryEnableButton_Click
+                onClick: Button_Click
                 );
 
-            return enableButton;
+            return button;
         }
 
-        private static void EntryEnableButton_Click(object sender, EventArgs e) {
+        private static void Button_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
             var selectedEntries = pluginHost.MainWindow.GetSelectedEntries();
-            selectedEntries.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
+            selectedEntries.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
 
             var selectedEntriesCount = selectedEntries.Length;
             if (selectedEntriesCount == 1) {
                 var entryTitle = selectedEntries[0].Strings.ReadSafeEx(PwDefs.TitleField);
                 pluginHost.MainWindow.SetStatusEx(
-                    string.Format(Properties.Strings.entryEnabledForSingle, entryTitle)
+                    string.Format(Properties.Strings.entryTcatoDisabled, entryTitle)
                     );
             } else {
                 pluginHost.MainWindow.SetStatusEx(
-                    string.Format(Properties.Strings.entryEnabledForMultiple, selectedEntriesCount)
+                    string.Format(Properties.Strings.entriesTcatoDisabled, selectedEntriesCount)
                     );
             }
         }
 
         internal static void Terminate() {
-            enableButton.Click -= EntryEnableButton_Click;
-            enableButton.Dispose();
+            button.Click -= Button_Click;
+            button.Dispose();
         }
     }
 }

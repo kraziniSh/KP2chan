@@ -117,53 +117,89 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="entryDisableButton" xml:space="preserve">
-    <value>Disable 2CATO</value>
+  <data name="allATDisable" xml:space="preserve">
+    <value>Disable Auto-Type everywhere</value>
   </data>
-  <data name="entryDisabled" xml:space="preserve">
-    <value>[KP2chan] 2CATO disabled for entry "{0}".</value>
+  <data name="allATDisabled" xml:space="preserve">
+    <value>[KP2chan] Auto-Type disabled for all entries.</value>
   </data>
-  <data name="entryDisabledForMultiple" xml:space="preserve">
-    <value>[KP2chan] 2CATO disabled for {0} entries.</value>
+  <data name="allATEnable" xml:space="preserve">
+    <value>Enable Auto-Type everywhere</value>
   </data>
-  <data name="entryDisabledForSingle" xml:space="preserve">
-    <value>[KP2chan] 2CATO disabled for entry "{0}".</value>
+  <data name="allATEnabled" xml:space="preserve">
+    <value>[KP2chan] Auto-Type enabled for all entries.</value>
   </data>
-  <data name="entryEnableButton" xml:space="preserve">
-    <value>Enable 2CATO</value>
+  <data name="allTcatoDisable" xml:space="preserve">
+    <value>Disable TCATO everywhere</value>
   </data>
-  <data name="entryEnabled" xml:space="preserve">
-    <value>[KP2chan] 2CATO enabled for entry "{0}".</value>
+  <data name="allTcatoDisabled" xml:space="preserve">
+    <value>[KP2chan] TCATO disabled for all entries.</value>
   </data>
-  <data name="entryEnabledForMultiple" xml:space="preserve">
-    <value>[KP2chan] 2CATO enabled for {0} entries.</value>
+  <data name="allTcatoEnable" xml:space="preserve">
+    <value>Enable TCATO everywhere</value>
   </data>
-  <data name="entryEnabledForSingle" xml:space="preserve">
-    <value>[KP2chan] 2CATO enabled for entry "{0}".</value>
+  <data name="allTcatoEnabled" xml:space="preserve">
+    <value>[KP2chan] TCATO enabled for all entries.</value>
   </data>
-  <data name="groupDisableButton" xml:space="preserve">
-    <value>Disable 2CATO</value>
+  <data name="entriesATDisabled" xml:space="preserve">
+    <value>[KP2chan] Auto-Type disabled for {0} entries.</value>
   </data>
-  <data name="groupDisabled" xml:space="preserve">
-    <value>[KP2chan] 2CATO disabled for group "{0}".</value>
+  <data name="entriesATEnabled" xml:space="preserve">
+    <value>[KP2chan] Auto-Type enabled for {0} entries.</value>
   </data>
-  <data name="groupEnableButton" xml:space="preserve">
-    <value>Enable 2CATO</value>
+  <data name="entriesTcatoDisabled" xml:space="preserve">
+    <value>[KP2chan] TCATO disabled for {0} entries.</value>
   </data>
-  <data name="groupEnabled" xml:space="preserve">
-    <value>[KP2chan] 2CATO enabled for group "{0}".</value>
+  <data name="entriesTcatoEnabled" xml:space="preserve">
+    <value>[KP2chan] TCATO enabled for {0} entries.</value>
   </data>
-  <data name="mainDisableButton" xml:space="preserve">
-    <value>Disable 2CATO everywhere</value>
+  <data name="entryATDisable" xml:space="preserve">
+    <value>Disable Auto-Type</value>
   </data>
-  <data name="mainDisabled" xml:space="preserve">
-    <value>[KP2chan] 2CATO disabled for all entries.</value>
+  <data name="entryATDisabled" xml:space="preserve">
+    <value>[KP2chan] Auto-Type disabled for entry "{0}".</value>
   </data>
-  <data name="mainEnableButton" xml:space="preserve">
-    <value>Enable 2CATO everywhere</value>
+  <data name="entryATEnable" xml:space="preserve">
+    <value>Enable Auto-Type</value>
   </data>
-  <data name="mainEnabled" xml:space="preserve">
-    <value>[KP2chan] 2CATO enabled for all entries.</value>
+  <data name="entryATEnabled" xml:space="preserve">
+    <value>[KP2chan] Auto-Type enabled for entry "{0}".</value>
+  </data>
+  <data name="entryTcatoDisable" xml:space="preserve">
+    <value>Disable TCATO</value>
+  </data>
+  <data name="entryTcatoDisabled" xml:space="preserve">
+    <value>[KP2chan] TCATO disabled for entry "{0}".</value>
+  </data>
+  <data name="entryTcatoEnable" xml:space="preserve">
+    <value>Enable TCATO</value>
+  </data>
+  <data name="entryTcatoEnabled" xml:space="preserve">
+    <value>[KP2chan] TCATO enabled for entry "{0}".</value>
+  </data>
+  <data name="groupATDisable" xml:space="preserve">
+    <value>Disable Auto-Type</value>
+  </data>
+  <data name="groupATDisabled" xml:space="preserve">
+    <value>[KP2chan] Auto-Type disabled for group "{0}".</value>
+  </data>
+  <data name="groupATEnable" xml:space="preserve">
+    <value>Enable Auto-Type</value>
+  </data>
+  <data name="groupATEnabled" xml:space="preserve">
+    <value>[KP2chan] Auto-Type enabled for group "{0}".</value>
+  </data>
+  <data name="groupTcatoDisable" xml:space="preserve">
+    <value>Disable TCATO</value>
+  </data>
+  <data name="groupTcatoDisabled" xml:space="preserve">
+    <value>[KP2chan] TCATO disabled for group "{0}".</value>
+  </data>
+  <data name="groupTcatoEnable" xml:space="preserve">
+    <value>Enable TCATO</value>
+  </data>
+  <data name="groupTcatoEnabled" xml:space="preserve">
+    <value>[KP2chan] TCATO enabled for group "{0}".</value>
   </data>
   <data name="pluginName" xml:space="preserve">
     <value>KP2chan</value>

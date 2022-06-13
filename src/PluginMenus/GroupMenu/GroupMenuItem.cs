@@ -22,22 +22,26 @@ using System.Windows.Forms;
 namespace KP2chan {
     internal static class GroupMenuItem {
         internal static ToolStripMenuItem Create() {
-            var groupMenuItem = new ToolStripMenuItem(
+            var menuItem = new ToolStripMenuItem(
                 text: Properties.Strings.pluginName
                 // TODO image:
                 );
-            var enableButton = GroupEnableButton.Create();
-            var disableButton = GroupDisableButton.Create();
 
-            groupMenuItem.DropDownItems.Add(enableButton);
-            groupMenuItem.DropDownItems.Add(disableButton);
+            menuItem.DropDownItems.AddRange(new[] {
+                GroupEnableATButton.Create(),
+                GroupDisableATButton.Create(),
+                GroupEnableTcatoButton.Create(),
+                GroupDisableTcatoButton.Create()
+            });
 
-            return groupMenuItem;
+            return menuItem;
         }
 
         internal static void Terminate() {
-            GroupEnableButton.Terminate();
-            GroupDisableButton.Terminate();
+            GroupEnableATButton.Terminate();
+            GroupDisableATButton.Terminate();
+            GroupEnableTcatoButton.Terminate();
+            GroupDisableTcatoButton.Terminate();
         }
     }
 }

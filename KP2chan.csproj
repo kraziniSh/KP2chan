@@ -2,6 +2,9 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+   <LangVersion>5</LangVersion>
+ </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CF4262E3-9F1E-4C21-AFD4-93DB27702737}</ProjectGuid>
@@ -19,23 +22,22 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>out\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>
-    </CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>KP2chan.ruleset</CodeAnalysisRuleSet>
     <IntermediateOutputPath>C:\Users\lacro\AppData\Local\Temp\vs9800.tmp\Debug\</IntermediateOutputPath>
+    <SkipPostSharp>True</SkipPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>out\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>
-    </CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>KP2chan.ruleset</CodeAnalysisRuleSet>
     <IntermediateOutputPath>C:\Users\lacro\AppData\Local\Temp\vs9800.tmp\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup>
@@ -44,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="KeePass, Version=2.51.1.21987, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\KeePass.2.51.1.21987\lib\net462\KeePass.exe</HintPath>
+      <HintPath>packages\KeePass.2.51.1.21987\lib\net462\KeePass.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -76,25 +78,27 @@
     <Compile Include="src\KeePassExtensions\PwEntryExtensions.cs" />
     <Compile Include="src\KeePassExtensions\PwGroupExtensions.cs" />
     <Compile Include="src\KP2chanExt.cs" />
-    <Compile Include="src\PluginMenus\EntryMenu\EntryDisableButton.cs" />
-    <Compile Include="src\PluginMenus\EntryMenu\EntryEnableButton.cs" />
+    <Compile Include="src\PluginMenus\EntryMenu\EntryDisableTcatoButton.cs" />
+    <Compile Include="src\PluginMenus\EntryMenu\EntryDisableATButton.cs" />
+    <Compile Include="src\PluginMenus\EntryMenu\EntryEnableATButton.cs" />
+    <Compile Include="src\PluginMenus\EntryMenu\EntryEnableTcatoButton.cs" />
     <Compile Include="src\PluginMenus\EntryMenu\EntryMenuItem.cs" />
-    <Compile Include="src\PluginMenus\GroupMenu\GroupDisableButton.cs" />
-    <Compile Include="src\PluginMenus\GroupMenu\GroupEnableButton.cs" />
+    <Compile Include="src\PluginMenus\GroupMenu\GroupDisableTcatoButton.cs" />
+    <Compile Include="src\PluginMenus\GroupMenu\GroupDisableATButton.cs" />
+    <Compile Include="src\PluginMenus\GroupMenu\GroupEnableATButton.cs" />
+    <Compile Include="src\PluginMenus\GroupMenu\GroupEnableTcatoButton.cs" />
     <Compile Include="src\PluginMenus\GroupMenu\GroupMenuItem.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\MainDisableButton.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\MainEnableButton.cs" />
+    <Compile Include="src\PluginMenus\MainMenu\MainDisableTcatoButton.cs" />
+    <Compile Include="src\PluginMenus\MainMenu\MainDisableATButton.cs" />
+    <Compile Include="src\PluginMenus\MainMenu\MainEnableATButton.cs" />
+    <Compile Include="src\PluginMenus\MainMenu\MainEnableTcatoButton.cs" />
     <Compile Include="src\PluginMenus\MainMenu\MainMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Build-Plugin.ps1" />
-    <None Include="Complete-Building.ps1" />
+    <None Include="Build-Plgx.ps1" />
     <None Include="KP2chan.ruleset" />
-    <None Include="Launch-Plugin.ps1" />
-    <None Include="Move-Plugin.ps1" />
-    <None Include="Optimize-Project.ps1" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
@@ -117,9 +121,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>@rem cd $(SolutionDir)
-@rem powershell -File Build-Plugin.ps1 -configuration 'Debug' -skipWarnings Y
-@rem powershell -File Move-Plugin.ps1
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
