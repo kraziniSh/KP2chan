@@ -1,6 +1,6 @@
 # KP2chan
 
-## Bulding
+## Building
 
 ### Dependencies
 
