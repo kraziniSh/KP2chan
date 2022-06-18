@@ -1,17 +1,18 @@
 param ($optimizeProject)
 
-$parent = Resolve-Path .\
+$solutionDir = Resolve-Path .\
 $keepassExecutable = Get-ChildItem .\packages\KeePass*\lib\net*\KeePass.exe
 
 Write-Output 'KP2chan PLGX Build Script - (C) 2022 L9CRO1XX'
 
 if ($optimizeProject -eq 'Y') {
-    Remove-Item .\out -WhatIf
+    Remove-Item .\out -WhatIf #TODO WhatIf we removed -WhatIf?
+    # A joke probably made millions of time.
 }
 
 Write-Output 'Compiling with KeePass...'
 
-Start-Process $keepassExecutable -ArgumentList "--plgx-create $parent"
+Start-Process $keepassExecutable -ArgumentList "--plgx-create $solutionDir"
 
 $attempts = 0
 while ($attempts -lt 10) {
