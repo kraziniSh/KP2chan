@@ -21,27 +21,27 @@ using System.Windows.Forms;
 
 namespace KP2chan {
     internal static class EntryMenuItem {
-        internal static ToolStripMenuItem Create() {
+        internal static ToolStripMenuItem Initialize() {
             var menuItem = new ToolStripMenuItem(
                 text: Properties.Strings.pluginName
                 // TODO image:
                 );
 
             menuItem.DropDownItems.AddRange(new[] {
-                EntryEnableATButton.Create(),
-                EntryDisableATButton.Create(),
-                EntryEnableTcatoButton.Create(),
-                EntryDisableTcatoButton.Create(),
+                EntryATEnableButton.Create(),
+                EntryATDisableButton.Create(),
+                EntryTcatoEnableButton.Create(),
+                EntryTcatoDisableButton.Create(),
             });
 
             return menuItem;
         }
 
         internal static void Terminate() {
-            EntryEnableATButton.Terminate();
-            EntryDisableATButton.Terminate();
-            EntryEnableTcatoButton.Terminate();
-            EntryDisableTcatoButton.Terminate();
+            EntryATEnableButton.Terminate();
+            EntryATDisableButton.Terminate();
+            EntryTcatoEnableButton.Terminate();
+            EntryTcatoDisableButton.Terminate();
         }
     }
 }

@@ -18,6 +18,7 @@ KP2chan; 2CATO empowered.
 */
 
 using KeePass.Plugins;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace KP2chan {
@@ -58,12 +59,15 @@ namespace KP2chan {
             if (initializingHost != null) pluginHost = initializingHost;
             else return false;
 
+            // var installedUICulture = CultureInfo.InstalledUICulture;
+            // CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InstalledUICulture;
+
             toolsMenu = pluginHost.MainWindow.ToolsMenu.DropDownItems;
 
             separator = new ToolStripSeparator();
-            pluginEntryMenu = EntryMenuItem.Create();
-            pluginGroupMenu = GroupMenuItem.Create();
-            pluginMainMenu = MainMenuItem.Create();
+            pluginEntryMenu = EntryMenuItem.Initialize();
+            pluginGroupMenu = GroupMenuItem.Initialize();
+            pluginMainMenu = MainMenuItem.Initialize();
 
             toolsMenu.Add(separator);
 

@@ -17,54 +17,43 @@ KP2chan; 2CATO empowered.
 
 */
 
-using KeePassLib.Collections;
 using System;
 using System.Windows.Forms;
 
 namespace KP2chan {
-    internal static class MainEnableTcatoButton {
+    internal static class GroupATEnableButton {
         private static ToolStripMenuItem button;
 
         internal static ToolStripMenuItem Create() {
-            var pluginHost = KP2chanExt.pluginHost;
-
             button = new ToolStripMenuItem(
-                text: Properties.Strings.allTcatoEnable,
+                text: Properties.Strings.groupATEnable,
                 image: null,
                 onClick: Button_Click
-                ) {
-                Enabled = false
-            };
-
-            pluginHost.MainWindow.FileOpened += EnableButton;
-            pluginHost.MainWindow.FileClosed += DisableButton;
+                );
 
             return button;
-        }
-
-        private static void EnableButton(object sender, KeePass.Forms.FileOpenedEventArgs e) {
-            button.Enabled = true;
-        }
-
-        private static void DisableButton(object sender, KeePass.Forms.FileClosedEventArgs e) {
-            button.Enabled = false;
         }
 
         private static void Button_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.Database.RootGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
+            var selectedGroup = pluginHost.MainWindow.GetSelectedGroup();
 
-            pluginHost.MainWindow.SetStatusEx(Properties.Strings.allTcatoEnabled);
+            selectedGroup.SetAutoType(true);
+
+            if (selectedGroup == pluginHost.Database.RootGroup) {
+                pluginHost.MainWindow.SetStatusEx(Properties.Strings.allATEnabled);
+            } else {
+                pluginHost.MainWindow.SetStatusEx(
+                string.Format(Properties.Strings.groupATEnabled, selectedGroup.Name)
+                );
+            }
         }
 
         internal static void Terminate() {
-            var pluginHost = KP2chanExt.pluginHost;
-
             button.Click -= Button_Click;
-            pluginHost.MainWindow.FileOpened -= EnableButton;
-            pluginHost.MainWindow.FileClosed -= DisableButton;
             button.Dispose();
+            button = null;
         }
     }
 }

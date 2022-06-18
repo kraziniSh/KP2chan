@@ -17,54 +17,47 @@ KP2chan; 2CATO empowered.
 
 */
 
-using KeePassLib.Collections;
 using System;
 using System.Windows.Forms;
+using KeePassLib;
+using KeePassLib.Collections;
 
 namespace KP2chan {
-    internal static class MainDisableTcatoButton {
+    internal static class EntryTcatoDisableButton {
         private static ToolStripMenuItem button;
-
         internal static ToolStripMenuItem Create() {
-            var pluginHost = KP2chanExt.pluginHost;
-
             button = new ToolStripMenuItem(
-                text: Properties.Strings.allTcatoDisable,
+                text: Properties.Strings.entryTcatoDisable,
                 image: null,
                 onClick: Button_Click
-                ) {
-                Enabled = false
-            };
-
-            pluginHost.MainWindow.FileOpened += EnableButton;
-            pluginHost.MainWindow.FileClosed += DisableButton;
+                );
 
             return button;
         }
 
-        private static void Button_Click
-            (object sender, EventArgs e) {
+        private static void Button_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.Database.RootGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
+            var selectedEntries = pluginHost.MainWindow.GetSelectedEntries();
+            selectedEntries.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
 
-            pluginHost.MainWindow.SetStatusEx(Properties.Strings.allTcatoDisabled);
-        }
-        private static void EnableButton(object sender, KeePass.Forms.FileOpenedEventArgs e) {
-            button.Enabled = true;
-        }
-
-        private static void DisableButton(object sender, KeePass.Forms.FileClosedEventArgs e) {
-            button.Enabled = false;
+            var selectedEntriesCount = selectedEntries.Length;
+            if (selectedEntriesCount == 1) {
+                var entryTitle = selectedEntries[0].Strings.ReadSafeEx(PwDefs.TitleField);
+                pluginHost.MainWindow.SetStatusEx(
+                    string.Format(Properties.Strings.entryTcatoDisabled, entryTitle)
+                    );
+            } else {
+                pluginHost.MainWindow.SetStatusEx(
+                    string.Format(Properties.Strings.entriesTcatoDisabled, selectedEntriesCount)
+                    );
+            }
         }
 
         internal static void Terminate() {
-            var pluginHost = KP2chanExt.pluginHost;
-
             button.Click -= Button_Click;
-            pluginHost.MainWindow.FileOpened -= EnableButton;
-            pluginHost.MainWindow.FileClosed -= DisableButton;
             button.Dispose();
+            button = null;
         }
     }
 }

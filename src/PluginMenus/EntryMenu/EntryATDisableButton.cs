@@ -22,11 +22,11 @@ using System.Windows.Forms;
 using KeePassLib;
 
 namespace KP2chan {
-    internal static class EntryEnableATButton {
+    internal static class EntryATDisableButton {
         private static ToolStripMenuItem button;
         internal static ToolStripMenuItem Create() {
             button = new ToolStripMenuItem(
-                text: Properties.Strings.entryATEnable,
+                text: Properties.Strings.entryATDisable,
                 image: null,
                 onClick: Button_Click
                 );
@@ -38,17 +38,17 @@ namespace KP2chan {
             var pluginHost = KP2chanExt.pluginHost;
 
             var selectedEntries = pluginHost.MainWindow.GetSelectedEntries();
-            selectedEntries.SetAutoType(true);
+            selectedEntries.SetAutoType(false);
 
             var selectedEntriesCount = selectedEntries.Length;
             if (selectedEntriesCount == 1) {
                 var entryTitle = selectedEntries[0].Strings.ReadSafeEx(PwDefs.TitleField);
                 pluginHost.MainWindow.SetStatusEx(
-                    string.Format(Properties.Strings.entryATEnabled, entryTitle)
+                    string.Format(Properties.Strings.entryATDisabled, entryTitle)
                     );
             } else {
                 pluginHost.MainWindow.SetStatusEx(
-                    string.Format(Properties.Strings.entriesATEnabled, selectedEntriesCount)
+                    string.Format(Properties.Strings.entriesATDisabled, selectedEntriesCount)
                     );
             }
         }
@@ -56,6 +56,7 @@ namespace KP2chan {
         internal static void Terminate() {
             button.Click -= Button_Click;
             button.Dispose();
+            button = null;
         }
     }
 }

@@ -21,7 +21,7 @@ using System;
 using System.Windows.Forms;
 
 namespace KP2chan {
-    internal static class GroupDisableATButton {
+    internal static class GroupATDisableButton {
         private static ToolStripMenuItem button;
 
         internal static ToolStripMenuItem Create() {
@@ -53,6 +53,7 @@ namespace KP2chan {
         internal static void Terminate() {
             button.Click -= Button_Click;
             button.Dispose();
+            button = null;
         }
     }
 }

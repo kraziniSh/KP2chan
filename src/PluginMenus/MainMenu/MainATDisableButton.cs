@@ -21,14 +21,14 @@ using System;
 using System.Windows.Forms;
 
 namespace KP2chan {
-    internal static class MainEnableATButton {
+    internal static class MainATDisableButton {
         private static ToolStripMenuItem button;
 
         internal static ToolStripMenuItem Create() {
             var pluginHost = KP2chanExt.pluginHost;
 
             button = new ToolStripMenuItem(
-                text: Properties.Strings.allATEnable,
+                text: Properties.Strings.allATDisable,
                 image: null,
                 onClick: Button_Click
                 ) {
@@ -44,9 +44,9 @@ namespace KP2chan {
         private static void Button_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.Database.RootGroup.SetAutoType(true);
+            pluginHost.Database.RootGroup.SetAutoType(false);
 
-            pluginHost.MainWindow.SetStatusEx(Properties.Strings.allATEnabled);
+            pluginHost.MainWindow.SetStatusEx(Properties.Strings.allATDisabled);
         }
 
         private static void EnableButton(object sender, KeePass.Forms.FileOpenedEventArgs e) {
@@ -64,6 +64,7 @@ namespace KP2chan {
             pluginHost.MainWindow.FileOpened -= EnableButton;
             pluginHost.MainWindow.FileClosed -= DisableButton;
             button.Dispose();
+            button = null;
         }
     }
 }

@@ -19,15 +19,14 @@ KP2chan; 2CATO empowered.
 
 using System;
 using System.Windows.Forms;
-using KeePassLib.Collections;
+using KeePassLib;
 
 namespace KP2chan {
-    internal static class GroupDisableTcatoButton {
+    internal static class EntryATEnableButton {
         private static ToolStripMenuItem button;
-
         internal static ToolStripMenuItem Create() {
             button = new ToolStripMenuItem(
-                text: Properties.Strings.groupTcatoDisable,
+                text: Properties.Strings.entryATEnable,
                 image: null,
                 onClick: Button_Click
                 );
@@ -38,22 +37,26 @@ namespace KP2chan {
         private static void Button_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            var selectedGroup = pluginHost.MainWindow.GetSelectedGroup();
+            var selectedEntries = pluginHost.MainWindow.GetSelectedEntries();
+            selectedEntries.SetAutoType(true);
 
-            selectedGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
-
-            if (selectedGroup == pluginHost.Database.RootGroup) {
-                pluginHost.MainWindow.SetStatusEx(Properties.Strings.allTcatoDisabled);
+            var selectedEntriesCount = selectedEntries.Length;
+            if (selectedEntriesCount == 1) {
+                var entryTitle = selectedEntries[0].Strings.ReadSafeEx(PwDefs.TitleField);
+                pluginHost.MainWindow.SetStatusEx(
+                    string.Format(Properties.Strings.entryATEnabled, entryTitle)
+                    );
             } else {
                 pluginHost.MainWindow.SetStatusEx(
-                string.Format(Properties.Strings.groupTcatoDisabled, selectedGroup.Name)
-                );
+                    string.Format(Properties.Strings.entriesATEnabled, selectedEntriesCount)
+                    );
             }
         }
 
         internal static void Terminate() {
             button.Click -= Button_Click;
             button.Dispose();
+            button = null;
         }
     }
 }

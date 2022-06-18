@@ -36,7 +36,7 @@
     Classes that don't support this are serialized and stored with the 
     mimetype set.
     
-    The mimetype is used for serialized objects, and tells the 
+    The mimetype is used pour serialized objects, and tells the 
     ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
     
@@ -118,90 +118,96 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="allATDisable" xml:space="preserve">
-    <value>Disable Auto-Type everywhere</value>
+    <value>Désactiver la Saisie-Automatique partout</value>
   </data>
   <data name="allATDisabled" xml:space="preserve">
-    <value>[KP2chan] Auto-Type disabled for all entries.</value>
+    <value>[KP2chan] Saisie-Automatique désactivée pour toutes les entrées.</value>
   </data>
   <data name="allATEnable" xml:space="preserve">
-    <value>Enable Auto-Type everywhere</value>
+    <value>Activer la Saisie-Automatique partout</value>
   </data>
   <data name="allATEnabled" xml:space="preserve">
-    <value>[KP2chan] Auto-Type enabled for all entries.</value>
+    <value>[KP2chan] Saisie-Automatique activée pour toutes les entrées.</value>
   </data>
   <data name="allTcatoDisable" xml:space="preserve">
-    <value>Disable TCATO everywhere</value>
+    <value>Désactiver la SAODF partout</value>
   </data>
   <data name="allTcatoDisabled" xml:space="preserve">
-    <value>[KP2chan] TCATO disabled for all entries.</value>
+    <value>[KP2chan] SAODF désactivée pour toutes les entrées.</value>
   </data>
   <data name="allTcatoEnable" xml:space="preserve">
-    <value>Enable TCATO everywhere</value>
+    <value>Activer la SAODF partout</value>
   </data>
   <data name="allTcatoEnabled" xml:space="preserve">
-    <value>[KP2chan] TCATO enabled for all entries.</value>
+    <value>[KP2chan] SAODF activée pour toutes les entrées.</value>
   </data>
   <data name="entriesATDisabled" xml:space="preserve">
-    <value>[KP2chan] Auto-Type disabled for {0} entries.</value>
+    <value>[KP2chan] Saisie-Automatique désactivée pour {0} entrées.</value>
   </data>
   <data name="entriesATEnabled" xml:space="preserve">
-    <value>[KP2chan] Auto-Type enabled for {0} entries.</value>
+    <value>[KP2chan] Saisie-Automatique activée pour {0} entrées.</value>
   </data>
   <data name="entriesTcatoDisabled" xml:space="preserve">
-    <value>[KP2chan] TCATO disabled for {0} entries.</value>
+    <value>[KP2chan] SAODF désactivée pour {0} entrées.</value>
   </data>
   <data name="entriesTcatoEnabled" xml:space="preserve">
-    <value>[KP2chan] TCATO enabled for {0} entries.</value>
+    <value>[KP2chan] SAODF activée pour {0} entrées.</value>
   </data>
   <data name="entryATDisable" xml:space="preserve">
-    <value>Disable Auto-Type</value>
+    <value>Désactiver la Saisie-Automatique</value>
   </data>
   <data name="entryATDisabled" xml:space="preserve">
-    <value>[KP2chan] Auto-Type disabled for entry "{0}".</value>
+    <value>[KP2chan] Saisie-Automatique désactivée pour l'entrée "{0}".</value>
   </data>
   <data name="entryATEnable" xml:space="preserve">
-    <value>Enable Auto-Type</value>
+    <value>Activer la Saisie-Automatique</value>
   </data>
   <data name="entryATEnabled" xml:space="preserve">
-    <value>[KP2chan] Auto-Type enabled for entry "{0}".</value>
+    <value>[KP2chan] Saisie-Automatique activée pour l'entrée "{0}".</value>
   </data>
   <data name="entryTcatoDisable" xml:space="preserve">
-    <value>Disable TCATO</value>
+    <value>Désactiver la SAODF</value>
   </data>
   <data name="entryTcatoDisabled" xml:space="preserve">
-    <value>[KP2chan] TCATO disabled for entry "{0}".</value>
+    <value>[KP2chan] SAODF désactivée pour l'entrée "{0}".</value>
   </data>
   <data name="entryTcatoEnable" xml:space="preserve">
-    <value>Enable TCATO</value>
+    <value>Activer la SAODF</value>
   </data>
   <data name="entryTcatoEnabled" xml:space="preserve">
-    <value>[KP2chan] TCATO enabled for entry "{0}".</value>
+    <value>[KP2chan] SAODF activée pour l'entrée "{0}".</value>
   </data>
   <data name="groupATDisable" xml:space="preserve">
-    <value>Disable Auto-Type</value>
+    <value>Désactiver la Saisie-Automatique</value>
   </data>
   <data name="groupATDisabled" xml:space="preserve">
-    <value>[KP2chan] Auto-Type disabled for group "{0}".</value>
+    <value>[KP2chan] Saisie-Automatique désactivée pour le groupe "{0}".</value>
   </data>
   <data name="groupATEnable" xml:space="preserve">
-    <value>Enable Auto-Type</value>
+    <value>Activer la Saisie-Automatique</value>
   </data>
   <data name="groupATEnabled" xml:space="preserve">
-    <value>[KP2chan] Auto-Type enabled for group "{0}".</value>
+    <value>[KP2chan] Saisie-Automatique activée pour le groupe "{0}".</value>
   </data>
   <data name="groupTcatoDisable" xml:space="preserve">
-    <value>Disable TCATO</value>
+    <value>Désactiver la SAODF</value>
   </data>
   <data name="groupTcatoDisabled" xml:space="preserve">
-    <value>[KP2chan] TCATO disabled for group "{0}".</value>
+    <value>[KP2chan] SAODF désactivée pour le groupe "{0}".</value>
   </data>
   <data name="groupTcatoEnable" xml:space="preserve">
-    <value>Enable TCATO</value>
+    <value>Activer la SAODF</value>
   </data>
   <data name="groupTcatoEnabled" xml:space="preserve">
-    <value>[KP2chan] TCATO enabled for group "{0}".</value>
+    <value>[KP2chan] SAODF activée pour le groupe "{0}".</value>
   </data>
   <data name="pluginName" xml:space="preserve">
     <value>KP2chan</value>
+  </data>
+  <data name="atAutoEnable" xml:space="preserve">
+    <value>Activer la Saisie-Automatique automatiquement</value>
+  </data>
+  <data name="tcatoAutoEnable" xml:space="preserve">
+    <value>Activer la SAODF automatiquement</value>
   </data>
 </root>

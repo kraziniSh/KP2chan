@@ -141,6 +141,9 @@
   <data name="allTcatoEnabled" xml:space="preserve">
     <value>[KP2chan] TCATO enabled for all entries.</value>
   </data>
+  <data name="atAutoEnable" xml:space="preserve">
+    <value>Enable Auto-Type automatically</value>
+  </data>
   <data name="entriesATDisabled" xml:space="preserve">
     <value>[KP2chan] Auto-Type disabled for {0} entries.</value>
   </data>
@@ -203,5 +206,8 @@
   </data>
   <data name="pluginName" xml:space="preserve">
     <value>KP2chan</value>
+  </data>
+  <data name="tcatoAutoEnable" xml:space="preserve">
+    <value>Enable TCATO automatically</value>
   </data>
 </root>

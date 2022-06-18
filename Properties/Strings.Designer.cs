@@ -133,6 +133,15 @@ namespace KP2chan.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Auto-Type automatically.
+        /// </summary>
+        internal static string atAutoEnable {
+            get {
+                return ResourceManager.GetString("atAutoEnable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [KP2chan] Auto-Type disabled for {0} entries..
         /// </summary>
         internal static string entriesATDisabled {
@@ -318,6 +327,15 @@ namespace KP2chan.Properties {
         internal static string pluginName {
             get {
                 return ResourceManager.GetString("pluginName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable TCATO automatically.
+        /// </summary>
+        internal static string tcatoAutoEnable {
+            get {
+                return ResourceManager.GetString("tcatoAutoEnable", resourceCulture);
             }
         }
     }

@@ -21,47 +21,31 @@ using System.Windows.Forms;
 
 namespace KP2chan {
     internal static class MainMenuItem {
-        private static ToolStripMenuItem menuItem;
-        internal static ToolStripMenuItem Create() {
-            var pluginHost = KP2chanExt.pluginHost;
-
-            menuItem = new ToolStripMenuItem(
+        internal static ToolStripMenuItem Initialize() {
+            var menuItem = new ToolStripMenuItem(
                 text: Properties.Strings.pluginName
                 // TODO image:
-                ) {
-                Enabled = false
-            };
+                );
 
             menuItem.DropDownItems.AddRange(new[] {
-                MainEnableATButton.Create(),
-                MainDisableATButton.Create(),
-                MainEnableTcatoButton.Create(),
-                MainDisableTcatoButton.Create()
+                MainATEnableButton.Create(),
+                MainATDisableButton.Create(),
+                MainTcatoEnableButton.Create(),
+                MainTcatoDisableButton.Create(),
+                MainTcatoAutoEnableToggle.Create(),
+                MainATAutoEnableToggle.Create(),
             });
-
-            pluginHost.MainWindow.FileOpened += EnableMenuItem;
-            pluginHost.MainWindow.FileClosed += DisableMenuItem;
 
             return menuItem;
         }
 
-        private static void EnableMenuItem(object sender, KeePass.Forms.FileOpenedEventArgs e) {
-            menuItem.Enabled = true;
-        }
-
-        private static void DisableMenuItem(object sender, KeePass.Forms.FileClosedEventArgs e) {
-            menuItem.Enabled = false;
-        }
-
         internal static void Terminate() {
-            var pluginHost = KP2chanExt.pluginHost;
-
-            MainEnableATButton.Terminate();
-            MainDisableATButton.Terminate();
-            MainEnableTcatoButton.Terminate();
-            MainDisableTcatoButton.Terminate();
-            pluginHost.MainWindow.FileOpened -= EnableMenuItem;
-            pluginHost.MainWindow.FileClosed -= DisableMenuItem;
+            MainATEnableButton.Terminate();
+            MainATDisableButton.Terminate();
+            MainTcatoEnableButton.Terminate();
+            MainTcatoDisableButton.Terminate();
+            MainTcatoAutoEnableToggle.Terminate();
+            MainATAutoEnableToggle.Terminate();
         }
     }
 }

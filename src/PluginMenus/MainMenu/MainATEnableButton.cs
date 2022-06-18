@@ -19,18 +19,24 @@ KP2chan; 2CATO empowered.
 
 using System;
 using System.Windows.Forms;
-using KeePassLib;
-using KeePassLib.Collections;
 
 namespace KP2chan {
-    internal static class EntryEnableTcatoButton {
+    internal static class MainATEnableButton {
         private static ToolStripMenuItem button;
+
         internal static ToolStripMenuItem Create() {
+            var pluginHost = KP2chanExt.pluginHost;
+
             button = new ToolStripMenuItem(
-                text: Properties.Strings.entryTcatoEnable,
+                text: Properties.Strings.allATEnable,
                 image: null,
                 onClick: Button_Click
-                );
+                ) {
+                Enabled = false
+            };
+
+            pluginHost.MainWindow.FileOpened += EnableButton;
+            pluginHost.MainWindow.FileClosed += DisableButton;
 
             return button;
         }
@@ -38,25 +44,27 @@ namespace KP2chan {
         private static void Button_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            var selectedEntries = pluginHost.MainWindow.GetSelectedEntries();
-            selectedEntries.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
+            pluginHost.Database.RootGroup.SetAutoType(true);
 
-            var selectedEntriesCount = selectedEntries.Length;
-            if (selectedEntriesCount == 1) {
-                var entryTitle = selectedEntries[0].Strings.ReadSafeEx(PwDefs.TitleField);
-                pluginHost.MainWindow.SetStatusEx(
-                    string.Format(Properties.Strings.entryTcatoEnabled, entryTitle)
-                    );
-            } else {
-                pluginHost.MainWindow.SetStatusEx(
-                    string.Format(Properties.Strings.entriesTcatoEnabled, selectedEntriesCount)
-                    );
-            }
+            pluginHost.MainWindow.SetStatusEx(Properties.Strings.allATEnabled);
+        }
+
+        private static void EnableButton(object sender, KeePass.Forms.FileOpenedEventArgs e) {
+            button.Enabled = true;
+        }
+
+        private static void DisableButton(object sender, KeePass.Forms.FileClosedEventArgs e) {
+            button.Enabled = false;
         }
 
         internal static void Terminate() {
+            var pluginHost = KP2chanExt.pluginHost;
+
             button.Click -= Button_Click;
+            pluginHost.MainWindow.FileOpened -= EnableButton;
+            pluginHost.MainWindow.FileClosed -= DisableButton;
             button.Dispose();
+            button = null;
         }
     }
 }
