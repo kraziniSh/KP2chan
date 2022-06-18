@@ -16,7 +16,7 @@
 - Set Configuration to "All Configurations";
 - Select "Start external program";
 - Set it to KeePass.exe:
-	- When you click "Browse...", you should in the solution directory.
+	- When you click "Browse...", you should be in the solution directory.
 	- Browse to: packages\KeePass[...]\lib\net[...];
 	- Select KeePass.exe;
 - Add "--debug" in the command line arguments;
@@ -24,5 +24,5 @@
 
 ### Building
 
-Build the project. If everything goes right, you will find a lonely .plgx file in the
+Build the project. If everything goes right, you will find a .plgx file in the
 bin folder.
