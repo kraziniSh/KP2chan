@@ -17,16 +17,16 @@ KP2chan; 2CATO empowered.
 
 */
 
+using KeePassLib.Collections;
 using System;
 using System.Windows.Forms;
-using KeePassLib.Collections;
 
 namespace KP2chan {
     internal static class GroupTcatoEnableButton {
         private static ToolStripMenuItem button;
 
         internal static ToolStripMenuItem Create() {
-            button= new ToolStripMenuItem(
+            button = new ToolStripMenuItem(
                 text: Properties.Strings.groupTcatoEnable,
                 image: null,
                 onClick: Button_Click

@@ -17,9 +17,9 @@ KP2chan; 2CATO empowered.
 
 */
 
+using KeePassLib.Collections;
 using System;
 using System.Windows.Forms;
-using KeePassLib.Collections;
 
 namespace KP2chan {
     internal static class GroupTcatoDisableButton {

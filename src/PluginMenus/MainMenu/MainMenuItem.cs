@@ -21,20 +21,29 @@ using System.Windows.Forms;
 
 namespace KP2chan {
     internal static class MainMenuItem {
+        //private static ToolStripSeparator toggleSeparator;
+
         internal static ToolStripMenuItem Initialize() {
             var menuItem = new ToolStripMenuItem(
-                text: Properties.Strings.pluginName
+                text: Properties.Strings.menuItemText
                 // TODO image:
                 );
+
+            //toggleSeparator = new ToolStripSeparator();
 
             menuItem.DropDownItems.AddRange(new[] {
                 MainATEnableButton.Create(),
                 MainATDisableButton.Create(),
                 MainTcatoEnableButton.Create(),
                 MainTcatoDisableButton.Create(),
-                MainTcatoAutoEnableToggle.Create(),
-                MainATAutoEnableToggle.Create(),
             });
+
+            //menuItem.DropDownItems.Add(toggleSeparator);
+
+            //menuItem.DropDownItems.AddRange(new[] {
+            //    MainTcatoAutoEnableToggle.Create(),
+            //    MainATAutoEnableToggle.Create()
+            //});
 
             return menuItem;
         }
@@ -44,8 +53,10 @@ namespace KP2chan {
             MainATDisableButton.Terminate();
             MainTcatoEnableButton.Terminate();
             MainTcatoDisableButton.Terminate();
-            MainTcatoAutoEnableToggle.Terminate();
-            MainATAutoEnableToggle.Terminate();
+            //toggleSeparator.Dispose();
+            //toggleSeparator = null;
+            //MainTcatoAutoEnableToggle.Terminate();
+            //MainATAutoEnableToggle.Terminate();
         }
     }
 }

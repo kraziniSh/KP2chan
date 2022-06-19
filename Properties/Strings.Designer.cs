@@ -322,11 +322,11 @@ namespace KP2chan.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to KP2chan.
+        ///   Looks up a localized string similar to Auto-Type / TCATO.
         /// </summary>
-        internal static string pluginName {
+        internal static string menuItemText {
             get {
-                return ResourceManager.GetString("pluginName", resourceCulture);
+                return ResourceManager.GetString("menuItemText", resourceCulture);
             }
         }
         

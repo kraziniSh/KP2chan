@@ -18,7 +18,6 @@ KP2chan; 2CATO empowered.
 */
 
 using KeePass.Plugins;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace KP2chan {
@@ -26,7 +25,6 @@ namespace KP2chan {
         internal static IPluginHost pluginHost;
 
         private ToolStripItemCollection toolsMenu;
-
         private ToolStripSeparator separator;
         private ToolStripMenuItem pluginEntryMenu;
         private ToolStripMenuItem pluginGroupMenu;

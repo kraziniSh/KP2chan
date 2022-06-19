@@ -17,9 +17,9 @@ KP2chan; 2CATO empowered.
 
 */
 
+using KeePassLib;
 using System;
 using System.Windows.Forms;
-using KeePassLib;
 
 namespace KP2chan {
     internal static class EntryATDisableButton {

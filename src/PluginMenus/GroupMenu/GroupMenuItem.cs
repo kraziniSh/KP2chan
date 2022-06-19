@@ -23,7 +23,7 @@ namespace KP2chan {
     internal static class GroupMenuItem {
         internal static ToolStripMenuItem Initialize() {
             var menuItem = new ToolStripMenuItem(
-                text: Properties.Strings.pluginName
+                text: Properties.Strings.menuItemText
                 // TODO image:
                 );
 

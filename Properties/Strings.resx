@@ -204,8 +204,8 @@
   <data name="groupTcatoEnabled" xml:space="preserve">
     <value>[KP2chan] TCATO enabled for group "{0}".</value>
   </data>
-  <data name="pluginName" xml:space="preserve">
-    <value>KP2chan</value>
+  <data name="menuItemText" xml:space="preserve">
+    <value>Auto-Type / TCATO</value>
   </data>
   <data name="tcatoAutoEnable" xml:space="preserve">
     <value>Enable TCATO automatically</value>

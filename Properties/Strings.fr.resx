@@ -36,7 +36,7 @@
     Classes that don't support this are serialized and stored with the 
     mimetype set.
     
-    The mimetype is used pour serialized objects, and tells the 
+    The mimetype is used for serialized objects, and tells the 
     ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
     
@@ -201,8 +201,8 @@
   <data name="groupTcatoEnabled" xml:space="preserve">
     <value>[KP2chan] SAODF activée pour le groupe "{0}".</value>
   </data>
-  <data name="pluginName" xml:space="preserve">
-    <value>KP2chan</value>
+  <data name="menuItemText" xml:space="preserve">
+    <value>Saisie-Automatique / SAODF</value>
   </data>
   <data name="atAutoEnable" xml:space="preserve">
     <value>Activer la Saisie-Automatique automatiquement</value>

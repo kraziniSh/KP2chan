@@ -20,10 +20,11 @@ KP2chan; 2CATO empowered.
 using System.Windows.Forms;
 
 namespace KP2chan {
+    // TODO FEATURE Toggle instead of two buttons
     internal static class EntryMenuItem {
         internal static ToolStripMenuItem Initialize() {
             var menuItem = new ToolStripMenuItem(
-                text: Properties.Strings.pluginName
+                text: Properties.Strings.menuItemText
                 // TODO image:
                 );
 
