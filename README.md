@@ -4,8 +4,7 @@
 
 ### **DO NOT RUN THE PLGX BUILD SCRIPT (.\Build-Plgx.ps1). THERE IS A CRITICAL BUG.**
 
-It will endlessly copy files from your partition root and place them in the
-solution directory.
+It will endlessly move files from your partition root to the solution directory.
 
 ## Build
 
