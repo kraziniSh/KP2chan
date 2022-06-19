@@ -56,9 +56,6 @@ namespace KP2chan {
             if (initializingHost != null) pluginHost = initializingHost;
             else return false;
 
-            // var installedUICulture = CultureInfo.InstalledUICulture;
-            // CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InstalledUICulture;
-
             toolsMenu = pluginHost.MainWindow.ToolsMenu.DropDownItems;
 
             pluginEntryMenu = EntryMenuItem.Initialize();
