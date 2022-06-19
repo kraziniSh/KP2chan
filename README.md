@@ -1,10 +1,10 @@
-# KP2chan
+# KP2chan <\=**=\>
 
 ## TCATO swiftly
 
-The **t**wo **c**hannel **A**uto-**T**ype **o**bfuscation is an interesting feature;
-shame that it is awfully difficult and tedious to enable.
-Either go through one by one, or XML edit, potentially bricking the database.
+The **t**wo **c**hannel **A**uto-**T**ype **o**bfuscation is an interesting
+feature; shame that it is awfully difficult and tedious to enable. Either go
+through one by one, or XML edit, potentially bricking the database.
 
 KP2chan gives you the power to quickly enable those for many at once.
 
@@ -22,40 +22,41 @@ listen for new entries being created. Sorry, but better than nothing, eh?
 
 Beforehand, download a [portable KeePass ZIP package](https://keepass.info/download.html).
 
-Go to the project's properties, then set Configuration to "All Configurations".
+For the project to compile, you must add a reference to the portable KeePass in
+your newly cloned project. From the Plugin Development (2.x) page of the KeePass
+Help Center:
 
-First, we will configure the output directory:
+> [...] add a reference to KeePass: go to the references dialog and select the
+> KeePass.exe file (from the portable ZIP package). After you added the
+> reference, the namespaces KeePass and KeePassLib should be available.
 
-  1. Go to the Build section
-  2. Set the output directory to a folder (e.g. "out") in solution directory,
-  *not* the project (or plugin) directory.
+And now, to easily debug the plugin:
 
-  This prevents packaging unnecessary files in the final PLGX file.
-
-Finally, to easily debug the plugin:
-
-  1. Go to the Debug section;
-  2. Select "Start external program";
-  3. Set it to your portable KeePass executable;
-  4. Add "--debug" in the command line arguments when in the debug configuration;
+  1. Build the project in each configuration;
+  2. Go to the project's properties;
+  3. Go to the Debug section;
+  4. Select "Start external program";
+  5. Set it to the KeePass executable in the output folder, respective to the
+  current configuration (setting it to your portable KeePass will *not* work);
 
 ### Building
 
-**Before building:** Delete unnecessary files such as .csproj.user files! It
-will reduce the PLGX's final size.
+*Before building:* You may delete unnecessary files such as .csproj.user files.
+It reduces the PLGX's final size.
 
-Run the PLGX build script:
+To automatically build the PLGX file after the project, add this in the
+post-build event command line field:
+```Batchfile
+cd $(SolutionDir)
+powershell -File .\Build-Plgx.ps1 "$(ConfigurationName)"
+```
+
+Alternatively, you can manually run the PLGX build script:
 
 ```Batchfile
 powershell -File .\Build-Plgx.ps1
 ```
 
-Alternatively, add this to the post-build event command line field in Visual Studio:
-
-```Batchfile
-cd $(ProjectDir)
-powershell -File .\Build-Plgx.ps1
-```
-
-This automatically builds the PLGX file after the project has been successfully
-built.
+The PowerShell script fetches the output KeePass resulting from a building, and
+uses it compile the project (located at [.\KP2chan]). The resulting PLGX file
+will be generated in the solution directory.

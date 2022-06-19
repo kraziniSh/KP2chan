@@ -22,22 +22,24 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>out\Debug\</OutputPath>
+    <OutputPath>..\out\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>KP2chan.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <IntermediateOutputPath>C:\Users\lacro\AppData\Local\Temp\vs9800.tmp\Debug\</IntermediateOutputPath>
     <SkipPostSharp>True</SkipPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>out\Release\</OutputPath>
+    <OutputPath>..\out\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>KP2chan.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <IntermediateOutputPath>C:\Users\lacro\AppData\Local\Temp\vs9800.tmp\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup>
@@ -45,8 +47,8 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="KeePass, Version=2.51.1.21987, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\KeePass.2.51.1.21987\lib\net462\KeePass.exe</HintPath>
+    <Reference Include="KeePass">
+      <HintPath>..\..\KeePass\KeePass.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -74,43 +76,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\AutoTypeExtensionMethods\PwEntryArrayExtensions.cs" />
-    <Compile Include="src\AutoTypeExtensionMethods\PwEntryExtensions.cs" />
-    <Compile Include="src\AutoTypeExtensionMethods\PwGroupExtensions.cs" />
-    <Compile Include="src\KP2chanExt.cs" />
-    <Compile Include="src\PluginMenus\EntryMenu\EntryTcatoDisableButton.cs" />
-    <Compile Include="src\PluginMenus\EntryMenu\EntryATDisableButton.cs" />
-    <Compile Include="src\PluginMenus\EntryMenu\EntryATEnableButton.cs" />
-    <Compile Include="src\PluginMenus\EntryMenu\EntryTcatoEnableButton.cs" />
-    <Compile Include="src\PluginMenus\EntryMenu\EntryMenuItem.cs" />
-    <Compile Include="src\PluginMenus\GroupMenu\GroupTcatoDisableButton.cs" />
-    <Compile Include="src\PluginMenus\GroupMenu\GroupATDisableButton.cs" />
-    <Compile Include="src\PluginMenus\GroupMenu\GroupATEnableButton.cs" />
-    <Compile Include="src\PluginMenus\GroupMenu\GroupTcatoEnableButton.cs" />
-    <Compile Include="src\PluginMenus\GroupMenu\GroupMenuItem.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\MainATAutoToggle.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\MainTcatoAutoToggle.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\MainTcatoDisableButton.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\MainATDisableButton.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\MainATEnableButton.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\MainTcatoEnableButton.cs" />
-    <Compile Include="src\PluginMenus\MainMenu\MainMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\AutoEnablers\ATAutoEnabler.cs" />
-    <Compile Include="src\AutoEnablers\TcatoAutoEnabler.cs" />
+    <Compile Include="src\Auto enablers\ATAutoEnabler.cs" />
+    <Compile Include="src\Auto enablers\TcatoAutoEnabler.cs" />
+    <Compile Include="src\Auto-Type extension methods\PwEntryArrayExtensions.cs" />
+    <Compile Include="src\Auto-Type extension methods\PwEntryExtensions.cs" />
+    <Compile Include="src\Auto-Type extension methods\PwGroupExtensions.cs" />
+    <Compile Include="src\KP2chanExt.cs" />
+    <Compile Include="src\Menus\Entry\EntryATDisableButton.cs" />
+    <Compile Include="src\Menus\Entry\EntryATEnableButton.cs" />
+    <Compile Include="src\Menus\Entry\EntryMenuItem.cs" />
+    <Compile Include="src\Menus\Entry\EntryTcatoDisableButton.cs" />
+    <Compile Include="src\Menus\Entry\EntryTcatoEnableButton.cs" />
+    <Compile Include="src\Menus\Group\GroupATDisableButton.cs" />
+    <Compile Include="src\Menus\Group\GroupATEnableButton.cs" />
+    <Compile Include="src\Menus\Group\GroupMenuItem.cs" />
+    <Compile Include="src\Menus\Group\GroupTcatoDisableButton.cs" />
+    <Compile Include="src\Menus\Group\GroupTcatoEnableButton.cs" />
+    <Compile Include="src\Menus\Main\MainATAutoToggle.cs" />
+    <Compile Include="src\Menus\Main\MainATDisableButton.cs" />
+    <Compile Include="src\Menus\Main\MainATEnableButton.cs" />
+    <Compile Include="src\Menus\Main\MainMenuItem.cs" />
+    <Compile Include="src\Menus\Main\MainTcatoAutoToggle.cs" />
+    <Compile Include="src\Menus\Main\MainTcatoDisableButton.cs" />
+    <Compile Include="src\Menus\Main\MainTcatoEnableButton.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".licenseheader" />
-    <None Include="app.config" />
-    <None Include="Build-Plgx.ps1" />
-    <None Include="KP2chan.ruleset" />
-    <None Include="packages.config" />
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include=".gitattributes" />
-    <Content Include=".gitignore" />
-    <Content Include="LICENSE.txt" />
     <Content Include="Media\KeePass.ico" />
     <Content Include="Media\keepass_256x256.png" />
   </ItemGroup>
@@ -125,9 +116,11 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>cd $(SolutionDir)
+powershell -File .\Build-Plgx.ps1 "$(ConfigurationName)"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

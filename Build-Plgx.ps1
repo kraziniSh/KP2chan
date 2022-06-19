@@ -1,19 +1,33 @@
+param ($configuration)
+
 Write-Output @"
-KP2chan PLGX Build Script - (C) 2022 L9CRO1XX
+KP2chan PLGX Build Script
 
 "@
 
-$solutionDir = Resolve-Path .\
-$keepassExecutable = Get-ChildItem .\packages\KeePass*\lib\net*\KeePass.exe
+$pluginDir = Resolve-Path .\KP2chan
 
-if (!(Test-Path .\KP2chan.sln) -or !(Test-Path .\KP2chan.csproj)) {
-    Write-Error 'Not a plugin directory. Exiting.'
-    exit 1
+$keepassDebugExecutable
+$keepassReleaseExecutable
+$plgxCompiler
+if (Test-Path .\out\Debug\KeePass.exe) {
+    $plgxCompiler = Get-ChildItem .\out\Debug\KeePass.exe
+} elseif (Test-Path .\out\Release\KeePass.exe) {
+    $keepassExecutable = Get-ChildItem .\out\Release\KeePass.exe
+} else {
+    Write-Warning "Can't build PLGX because the output KeePass was not found!"
+
+    $keepassExecutable = Read-Host -Prompt "Please specify a path to a KeePass executable" |
+    Resolve-Path
 }
 
-Write-Output @"
-Compilation has started and will finish soon.
-Goodbye!
-"@
+Write-Output "Compiling..."
 
-Start-Process $keepassExecutable -ArgumentList "--plgx-create $solutionDir"
+# The safe way. No arguments redirects.
+if ($configuration -eq "Debug") {
+    Start-Process $keepassExecutable -ArgumentList "--plgx-create $pluginDir --debug"
+} else {
+    Start-Process $keepassExecutable -ArgumentList "--plgx-create $pluginDir"
+}
+
+Write-Output "Finished. Until next time!"
