@@ -1,12 +1,5 @@
 # KP2chan
 
-## !!! WARNING !!!
-
-### **DO NOT RUN THE PLGX BUILD SCRIPT (.\Build-Plgx.ps1). THERE IS A CRITICAL BUG.**
-
-It will endlessly copy files from your partition root and place them in the
-solution directory.
-
 ## Build
 
 ### Dependencies
@@ -31,23 +24,22 @@ solution directory.
 
 ### Building
 
+**Before building:** Delete unnecessary files! It will reduce the PLGX's final size.
+
+Side note: I have attempted to create a PowerShell script to automate cleaning. It resulted in me
+having to reinstall my chipset drivers. Hopefully I'll be able reboot after this.
+
 Run the PLGX build script:
 
 ```Batchfile
-powershell -File .\Build-Plgx.ps1 "Y"
+powershell -File .\Build-Plgx.ps1
 ```
 
 Alternatively, add this to the post-build event command line field in Visual Studio:
 
 ```Batchfile
 cd $(ProjectDir)
-powershell -File .\Build-Plgx.ps1 "Y"
+powershell -File .\Build-Plgx.ps1
 ```
 
-The PLGX will automatically build after the project has been successfully built.
-
-If everything goes right, you will find a .plgx file in the
-out/Release folder.
-
-The script automatically optimizes the project. That means that it temporarily
-moves unnecessary files before restoring them.
+The PLGX will be automatically built after the project has been successfully built.

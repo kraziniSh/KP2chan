@@ -353,3 +353,6 @@ MigrationBackup/
 
 # KeePass databases (used for testing)
 *.kdbx
+
+# A VERY evil file
+Build-PlgxDANGEROUS.ps1
