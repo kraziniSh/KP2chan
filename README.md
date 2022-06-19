@@ -1,5 +1,16 @@
 # KP2chan
 
+## TCATO swiftly
+
+The **t**wo **c**hannel **A**uto-**T**ype **o**bfuscation is an interesting feature;
+shame that it is awfully difficult and tedious to enable.
+Either go through one by one, or XML edit, potentially bricking the database.
+
+KP2chan gives you the power to quickly enable those for many at once.
+
+Unfortunately, auto-activation isn't implemented yet, as it is very difficult to
+listen for new entries being created. Sorry, but better than nothing, eh?
+
 ## Build
 
 ### Dependencies
