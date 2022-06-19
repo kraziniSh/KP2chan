@@ -1,5 +1,5 @@
 ﻿/*
-KP2chan; 2CATO empowered.
+KP2chan; 2CTcatoO empowered.
     Copyright (C) 2022  1A3CROIXX
 
     This program is free software: you can redistribute it and/or modify
@@ -17,37 +17,58 @@ KP2chan; 2CATO empowered.
 
 */
 
+using KeePass.Forms;
 using System;
 using System.Windows.Forms;
 
 namespace KP2chan {
-    // FIXME Not automatically enabling on creation.
     internal static class MainTcatoAutoEnableToggle {
         internal static TcatoAutoEnabler tcatoAutoEnabler;
 
         private static ToolStripMenuItem toggle;
 
         internal static ToolStripMenuItem Create() {
+            var pluginHost = KP2chanExt.pluginHost;
+
             toggle = new ToolStripMenuItem(
                 text: Properties.Strings.tcatoAutoEnable,
                 image: null,
                 onClick: TcatoAutoEnablerToggle_Click
-                );
+                ) {
+                Checked = ATAutoEnabler.Enabled
+            };
 
-            tcatoAutoEnabler = new TcatoAutoEnabler();
+            pluginHost.MainWindow.FileOpened += MainTcatoAutoEnableToggle_FileOpened;
+            pluginHost.MainWindow.FileClosingPre += MainTcatoAutoEnableToggle_FileClosingPre;
 
             return toggle;
         }
 
-        private static void TcatoAutoEnablerToggle_Click(object sender, EventArgs e) {
-            tcatoAutoEnabler.Enabled = !tcatoAutoEnabler.Enabled;
+        private static void MainTcatoAutoEnableToggle_FileOpened(object sender, FileOpenedEventArgs e) {
+            tcatoAutoEnabler = new TcatoAutoEnabler();
+        }
 
-            toggle.Checked = tcatoAutoEnabler.Enabled;
+        private static void MainTcatoAutoEnableToggle_FileClosingPre(object sender, FileClosingEventArgs e) {
+            tcatoAutoEnabler.Terminate();
+            tcatoAutoEnabler = null;
+        }
+
+        private static void TcatoAutoEnablerToggle_Click(object sender, EventArgs e) {
+            TcatoAutoEnabler.Enabled = !TcatoAutoEnabler.Enabled;
+
+            toggle.Checked = TcatoAutoEnabler.Enabled;
         }
 
         internal static void Terminate() {
-            tcatoAutoEnabler.Terminate();
-            tcatoAutoEnabler = null;
+            var pluginHost = KP2chanExt.pluginHost;
+
+            if (tcatoAutoEnabler != null && pluginHost.Database.IsOpen) {
+                tcatoAutoEnabler.Terminate();
+                tcatoAutoEnabler = null;
+            }
+
+            pluginHost.MainWindow.FileOpened -= MainTcatoAutoEnableToggle_FileOpened;
+            pluginHost.MainWindow.FileClosingPre -= MainTcatoAutoEnableToggle_FileClosingPre;
 
             toggle.Click -= TcatoAutoEnablerToggle_Click;
             toggle.Dispose();

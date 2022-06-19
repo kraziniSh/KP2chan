@@ -17,9 +17,12 @@ KP2chan; 2CATO empowered.
 
 */
 
+using KeePassLib;
+
 namespace KP2chan {
+    // FIXME Unable to implement auto-activator yet.
     internal sealed class ATAutoEnabler {
-        internal const string CONFIG_AUTO_AT_ENABLED_STR_ID = "KP2chan_ATauto";
+        internal const string CONFIG_AUTO_AT_ENABLED_STR_ID = "KP2chan_ATAuto";
 
         /// <summary>
         ///     Gets whether auto-activation of Auto-Type on new entries is
@@ -27,29 +30,31 @@ namespace KP2chan {
         ///     Can be <c>false</c> if the <c>CustomConfig</c> setting could not be
         ///     found; it's safer this way.
         /// </summary>
-        internal bool Enabled {
-            get { return KP2chanExt.pluginHost.CustomConfig.GetBool(CONFIG_AUTO_AT_ENABLED_STR_ID, false); }
+        internal static bool Enabled {
+            get { return KP2chanExt.pluginHost.CustomConfig.GetBool(CONFIG_AUTO_AT_ENABLED_STR_ID, true); }
             set { KP2chanExt.pluginHost.CustomConfig.SetBool(CONFIG_AUTO_AT_ENABLED_STR_ID, value); }
         }
 
         internal ATAutoEnabler() {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.MainWindow.DefaultEntryAction += ATAutoEnabler_EntryCreated;
+            pluginHost.Database.RootGroup.Touched += ATAutoEnabler_DatabaseTouched;
         }
 
-        private void ATAutoEnabler_EntryCreated(object sender, KeePass.Forms.CancelEntryEventArgs e) {
-            var entry = e.Entry;
+        private void ATAutoEnabler_DatabaseTouched(object sender, ObjectTouchedEventArgs e) {
+            var touchedObject = e.Object;
 
-            if (!Enabled) {
-                entry.SetAutoType(false);
+            if (touchedObject.GetType() == typeof(PwEntry)) {
+                PwEntry touchedEntry = (PwEntry)touchedObject;
+
+                touchedEntry.SetAutoType(Enabled);
             }
         }
 
         internal void Terminate() {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.MainWindow.DefaultEntryAction -= ATAutoEnabler_EntryCreated;
+            pluginHost.Database.RootGroup.Touched -= ATAutoEnabler_DatabaseTouched;
         }
     }
 }

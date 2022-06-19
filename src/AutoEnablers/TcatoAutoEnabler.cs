@@ -17,7 +17,11 @@ KP2chan; 2CATO empowered.
 
 */
 
+using KeePassLib;
+using KeePassLib.Collections;
+
 namespace KP2chan {
+    // FIXME Unable to implement auto-activator yet.
     internal sealed class TcatoAutoEnabler {
         internal const string CONFIG_AUTO_TCTcatoO_ENABLED_STR_ID = "KP2chan_TcatoAuto";
 
@@ -27,7 +31,7 @@ namespace KP2chan {
         ///     Can be <c>false</c> if the <c>CustomConfig</c> setting could not be
         ///     found; it's safer this way.
         /// </summary>
-        internal bool Enabled {
+        internal static bool Enabled {
             get { return KP2chanExt.pluginHost.CustomConfig.GetBool(CONFIG_AUTO_TCTcatoO_ENABLED_STR_ID, false); }
             set { KP2chanExt.pluginHost.CustomConfig.SetBool(CONFIG_AUTO_TCTcatoO_ENABLED_STR_ID, value); }
         }
@@ -35,23 +39,28 @@ namespace KP2chan {
         internal TcatoAutoEnabler() {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.MainWindow.DefaultEntryAction += TcatoAutoEnabler_EntryCreated;
+            pluginHost.Database.RootGroup.Touched += TcatoAutoEnabler_DatabaseTouched;
         }
 
-        private void TcatoAutoEnabler_EntryCreated(object sender, KeePass.Forms.CancelEntryEventArgs e) {
-            var entry = e.Entry;
+        private void TcatoAutoEnabler_DatabaseTouched(object sender, ObjectTouchedEventArgs e) {
+            var touchedObject = e.Object;
 
-            if (Enabled) {
-                entry.SetAutoTypeObfuscationOptions(KeePassLib.Collections.AutoTypeObfuscationOptions.None);
-            } else if (!Enabled) {
-                entry.SetAutoTypeObfuscationOptions(KeePassLib.Collections.AutoTypeObfuscationOptions.UseClipboard);
+            if (touchedObject.GetType() == typeof(PwEntry)) {
+                PwEntry touchedEntry = (PwEntry)touchedObject;
+
+                if (Enabled) {
+                    touchedEntry.SetAutoType(true);
+                    touchedEntry.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
+                } else {
+                    touchedEntry.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
+                }
             }
         }
 
         internal void Terminate() {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.MainWindow.DefaultEntryAction -= TcatoAutoEnabler_EntryCreated;
+            pluginHost.Database.RootGroup.Touched -= TcatoAutoEnabler_DatabaseTouched;
         }
     }
 }

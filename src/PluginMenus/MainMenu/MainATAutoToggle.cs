@@ -17,39 +17,58 @@ KP2chan; 2CATO empowered.
 
 */
 
+using KeePass.Forms;
 using System;
 using System.Windows.Forms;
 
 namespace KP2chan {
-    // FIXME Not automatically enabling on creation.
     internal static class MainATAutoEnableToggle {
         internal static ATAutoEnabler atAutoEnabler;
 
         private static ToolStripMenuItem toggle;
 
         internal static ToolStripMenuItem Create() {
+            var pluginHost = KP2chanExt.pluginHost;
+
             toggle = new ToolStripMenuItem(
                 text: Properties.Strings.atAutoEnable,
                 image: null,
                 onClick: ATAutoEnablerToggle_Click
                 ) {
-                Checked = true
+                Checked = ATAutoEnabler.Enabled
             };
 
-            atAutoEnabler = new ATAutoEnabler();
+            pluginHost.MainWindow.FileOpened += MainATAutoEnableToggle_FileOpened;
+            pluginHost.MainWindow.FileClosingPre += MainATAutoEnableToggle_FileClosingPre;
 
             return toggle;
         }
 
-        private static void ATAutoEnablerToggle_Click(object sender, EventArgs e) {
-            atAutoEnabler.Enabled = !atAutoEnabler.Enabled;
+        private static void MainATAutoEnableToggle_FileOpened(object sender, FileOpenedEventArgs e) {
+            atAutoEnabler = new ATAutoEnabler();
+        }
 
-            toggle.Checked = atAutoEnabler.Enabled;
+        private static void MainATAutoEnableToggle_FileClosingPre(object sender, FileClosingEventArgs e) {
+            atAutoEnabler.Terminate();
+            atAutoEnabler = null;
+        }
+
+        private static void ATAutoEnablerToggle_Click(object sender, EventArgs e) {
+            ATAutoEnabler.Enabled = !ATAutoEnabler.Enabled;
+
+            toggle.Checked = ATAutoEnabler.Enabled;
         }
 
         internal static void Terminate() {
-            atAutoEnabler.Terminate();
-            atAutoEnabler = null;
+            var pluginHost = KP2chanExt.pluginHost;
+
+            if (atAutoEnabler != null && pluginHost.Database.IsOpen) {
+                atAutoEnabler.Terminate();
+                atAutoEnabler = null;
+            }
+
+            pluginHost.MainWindow.FileOpened -= MainATAutoEnableToggle_FileOpened;
+            pluginHost.MainWindow.FileClosingPre -= MainATAutoEnableToggle_FileClosingPre;
 
             toggle.Click -= ATAutoEnablerToggle_Click;
             toggle.Dispose();
