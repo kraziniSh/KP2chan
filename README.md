@@ -4,30 +4,34 @@
 
 ### Dependencies
 
-- *KeePass* NuGet package
 - (For building) *PowerShell* 5.1
 - (Optional) *License Header Manager* Visual Studio extension
 
 ### Preparation
 
-- Install the KeePass NuGet package;
-- Go to the project's properties;
-- Go to the Debug section;
-- Set Configuration to "All Configurations";
-- Select "Start external program";
-- Set it to KeePass.exe:
-  - When you click "Browse...", you should be in the solution directory.
-  - Browse to: packages\KeePass[...]\lib\net[...];
-  - Select KeePass.exe;
-- Add "--debug" in the command line arguments when in the debug configuration;
-- Keep the working directory field empty.
+Beforehand, download a [portable KeePass ZIP package](https://keepass.info/download.html).
+
+Go to the project's properties, then set Configuration to "All Configurations".
+
+First, we will configure the output directory:
+
+  1. Go to the Build section
+  2. Set the output directory to a folder (e.g. "out") in solution directory,
+  *not* the project (or plugin) directory.
+
+  This prevents packaging unnecessary files in the final PLGX file.
+
+Finally, to easily debug the plugin:
+
+  1. Go to the Debug section;
+  2. Select "Start external program";
+  3. Set it to your portable KeePass executable;
+  4. Add "--debug" in the command line arguments when in the debug configuration;
 
 ### Building
 
-**Before building:** Delete unnecessary files! It will reduce the PLGX's final size.
-
-Side note: I have attempted to create a PowerShell script to automate cleaning. It resulted in me
-having to reinstall my chipset drivers. Hopefully I'll be able reboot after this.
+**Before building:** Delete unnecessary files such as .csproj.user files! It
+will reduce the PLGX's final size.
 
 Run the PLGX build script:
 
@@ -42,4 +46,5 @@ cd $(ProjectDir)
 powershell -File .\Build-Plgx.ps1
 ```
 
-The PLGX will be automatically built after the project has been successfully built.
+This automatically builds the PLGX file after the project has been successfully
+built.
