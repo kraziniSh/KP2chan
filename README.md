@@ -15,7 +15,8 @@ listen for new entries being created. Sorry, but better than nothing, eh?
 
 ### Dependencies
 
-- (For building) *PowerShell* 5.1 (built in Windows 10/11)
+- *PowerShell* 5.1 (built in Windows 10/11):
+for building.
 - (Optional) *License Header Manager* Visual Studio extension:
 automates insertion of copyright header.
 
