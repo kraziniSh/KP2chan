@@ -32,7 +32,7 @@ namespace KP2chan {
 
         public override string UpdateUrl {
             get {
-                return "https://l9cro1xx.github.io/keepass/update";
+                return "https://1a3roixx.github.io/keepass/update.txt";
             }
         }
 
