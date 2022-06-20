@@ -25,13 +25,14 @@ namespace KP2chan {
         internal static IPluginHost pluginHost;
 
         private ToolStripItemCollection toolsMenu;
+        private ToolStripSeparator separator;
         private ToolStripMenuItem pluginEntryMenu;
         private ToolStripMenuItem pluginGroupMenu;
         private ToolStripMenuItem pluginMainMenu;
 
         public override string UpdateUrl {
             get {
-                return "https://l9cro1xx.github.io/keepass/update";
+                return "https://1a3roixx.github.io/keepass/update.txt";
             }
         }
 
@@ -56,11 +57,17 @@ namespace KP2chan {
             if (initializingHost != null) pluginHost = initializingHost;
             else return false;
 
+            // var installedUICulture = CultureInfo.InstalledUICulture;
+            // CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InstalledUICulture;
+
             toolsMenu = pluginHost.MainWindow.ToolsMenu.DropDownItems;
 
+            separator = new ToolStripSeparator();
             pluginEntryMenu = EntryMenuItem.Initialize();
             pluginGroupMenu = GroupMenuItem.Initialize();
             pluginMainMenu = MainMenuItem.Initialize();
+
+            toolsMenu.Add(separator);
 
             return true;
         }
@@ -98,6 +105,8 @@ namespace KP2chan {
             pluginEntryMenu = null;
             pluginGroupMenu = null;
             pluginMainMenu = null;
+
+            separator.Dispose();
 
             toolsMenu.Clear();
         }
