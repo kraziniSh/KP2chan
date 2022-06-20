@@ -13,7 +13,7 @@ listen for new entries being created. Sorry, but better than nothing, eh?
 
 ## Build
 
-### Dependencies
+### Requirements
 
 - *PowerShell* 5.1 (built in Windows 10/11):
 for building.
