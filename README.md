@@ -60,5 +60,5 @@ powershell -File .\Build-Plgx.ps1
 ```
 
 The PowerShell script fetches the output KeePass resulting from a building, and
-uses it compile the project (located at [.\KP2chan]). The resulting PLGX file
+uses it compile the project (located at [KP2chan](KP2chan/)). The resulting PLGX file
 will be generated in the solution directory.
