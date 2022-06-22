@@ -1,6 +1,6 @@
-﻿/*
+/*
 KP2chan; 2CATO empowered.
-    Copyright (C) 2022  1A3CROIXX
+    Copyright (C) 2022  kraziniSh
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ namespace KP2chan {
 
         public override string UpdateUrl {
             get {
-                return "https://1a3roixx.github.io/keepass/update.txt";
+                return "https://krazinish.github.io/keepass/update.txt";
             }
         }
 
