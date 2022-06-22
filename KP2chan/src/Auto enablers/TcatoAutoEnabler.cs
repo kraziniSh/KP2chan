@@ -20,8 +20,12 @@ KP2chan; 2CATO empowered.
 using KeePassLib;
 using KeePassLib.Collections;
 
+// TODO FIXME Unable to implement auto-activator yet.
 namespace KP2chan {
-    // FIXME Unable to implement auto-activator yet.
+    /// <summary>
+    /// An object that automatically enables/disables Tcato on new entries.
+    /// Currently non-functionnal.
+    /// </summary>
     internal sealed class TcatoAutoEnabler {
         internal const string CONFIG_AUTO_TCTcatoO_ENABLED_STR_ID = "KP2chan_TcatoAuto";
 
@@ -42,18 +46,15 @@ namespace KP2chan {
             pluginHost.Database.RootGroup.Touched += TcatoAutoEnabler_DatabaseTouched;
         }
 
+        // TODO FEATURE Enable Tcato without automatically enabling Auto-Type;
+        // will need to change extension methods.
         private void TcatoAutoEnabler_DatabaseTouched(object sender, ObjectTouchedEventArgs e) {
             var touchedObject = e.Object;
 
             if (touchedObject.GetType() == typeof(PwEntry)) {
                 PwEntry touchedEntry = (PwEntry)touchedObject;
 
-                if (Enabled) {
-                    touchedEntry.SetAutoType(true);
-                    touchedEntry.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
-                } else {
-                    touchedEntry.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
-                }
+                touchedEntry.SetTcato(Enabled);
             }
         }
 

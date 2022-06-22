@@ -40,7 +40,7 @@ namespace KP2chan {
 
             var selectedGroup = pluginHost.MainWindow.GetSelectedGroup();
 
-            selectedGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
+            selectedGroup.SetTcato(false);
 
             if (selectedGroup == pluginHost.Database.RootGroup) {
                 pluginHost.MainWindow.SetStatusEx(Properties.Strings.allTcatoDisabled);

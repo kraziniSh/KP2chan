@@ -19,8 +19,12 @@ KP2chan; 2CATO empowered.
 
 using KeePassLib;
 
+// TODO FIXME Unable to implement auto-activator yet.
 namespace KP2chan {
-    // FIXME Unable to implement auto-activator yet.
+    /// <summary>
+    /// An object that automatically enables/disables Auto-Type on new entries.
+    /// Currently non-functionnal.
+    /// </summary>
     internal sealed class ATAutoEnabler {
         internal const string CONFIG_AUTO_AT_ENABLED_STR_ID = "KP2chan_ATAuto";
 

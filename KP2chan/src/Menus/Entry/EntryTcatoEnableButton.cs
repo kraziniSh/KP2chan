@@ -39,7 +39,7 @@ namespace KP2chan {
             var pluginHost = KP2chanExt.pluginHost;
 
             var selectedEntries = pluginHost.MainWindow.GetSelectedEntries();
-            selectedEntries.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
+            selectedEntries.SetTcato(true);
 
             var selectedEntriesCount = selectedEntries.Length;
             if (selectedEntriesCount == 1) {

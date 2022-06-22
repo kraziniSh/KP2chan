@@ -46,7 +46,7 @@ namespace KP2chan {
             (object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.Database.RootGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.None);
+            pluginHost.Database.RootGroup.SetTcato(false);
 
             pluginHost.MainWindow.SetStatusEx(Properties.Strings.allTcatoDisabled);
         }

@@ -53,7 +53,7 @@ namespace KP2chan {
         private static void Button_Click(object sender, EventArgs e) {
             var pluginHost = KP2chanExt.pluginHost;
 
-            pluginHost.Database.RootGroup.SetAutoTypeObfuscationOptions(AutoTypeObfuscationOptions.UseClipboard);
+            pluginHost.Database.RootGroup.SetTcato(true);
 
             pluginHost.MainWindow.SetStatusEx(Properties.Strings.allTcatoEnabled);
         }

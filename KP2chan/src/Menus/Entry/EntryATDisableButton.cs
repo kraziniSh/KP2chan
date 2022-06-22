@@ -38,6 +38,7 @@ namespace KP2chan {
             var pluginHost = KP2chanExt.pluginHost;
 
             var selectedEntries = pluginHost.MainWindow.GetSelectedEntries();
+
             selectedEntries.SetAutoType(false);
 
             var selectedEntriesCount = selectedEntries.Length;
